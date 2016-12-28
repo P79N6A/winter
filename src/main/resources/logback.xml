@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	  
+	<property name="LOG_DIR" value="logs" />
+	<property name="PATTERN" value="[winter] %d{yyyy-MM-dd HH:mm:ss.SSS} [%thread][%C-%L] %-5level - %msg%n%ex{full}"/>
+	<property name="PATTERN_SYNC" value="[SYNC] %d{yyyy-MM-dd HH:mm:ss.SSS} [%thread][%C-%L] %-5level - %mdc{client} uid:%X{mdc_push_uuid} p:%X{mdc_push_platform} carId:%X{mdc_push_carid} acc:%X{mdc_push_account} %msg%n%ex{full}"/>
+
+ -->	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>${PATTERN}</pattern>
+			<charset>UTF-8</charset>
+		</encoder>
+	</appender>
+	
+	<appender name="APP_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOG_DIR}/app.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>${LOG_DIR}/app.%d{yyyy-MM-dd}.log
+			</FileNamePattern>
+		</rollingPolicy>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>${PATTERN}</pattern>
+			<charset>UTF-8</charset>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>INFO</level>
+			<onMatch>ACCEPT</onMatch>  
+        	<onMismatch>DENY</onMismatch>
+		</filter>
+	</appender>
+
+	<appender name="SQL_INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOG_DIR}/sql/info.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>${LOG_DIR}/sql/info.%d{yyyy-MM-dd}.log
+			</FileNamePattern>
+		</rollingPolicy>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>${PATTERN}</pattern>
+			<charset>UTF-8</charset>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>INFO</level>
+			<onMatch>ACCEPT</onMatch>  
+        	<onMismatch>DENY</onMismatch>
+		</filter>
+	</appender>
+	
+	<appender name="SQL_ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOG_DIR}/sql/error.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>${LOG_DIR}/sql/error.%d{yyyy-MM-dd}.log
+			</FileNamePattern>
+		</rollingPolicy>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>${PATTERN}</pattern>
+			<charset>UTF-8</charset>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>ERROR</level>
+			<onMatch>ACCEPT</onMatch>  
+        	<onMismatch>DENY</onMismatch>
+		</filter>
+	</appender>
+	
+	
+	
+
+	<logger name="com.panda" additivity="false">
+		<level value="debug" />
+		<appender-ref ref="APP_LOG" />
+		<appender-ref ref="STDOUT" />
+	</logger>
+	
+	
+	<logger name="java.sql" additivity="false">
+		<level value="info" />
+		<appender-ref ref="SQL_INFO" />
+		<appender-ref ref="SQL_ERROR" />
+		<appender-ref ref="STDOUT" />
+	</logger>
+
+	
+	<logger name="org.springframework" additivity="false">
+		<level value="info" />
+		<appender-ref ref="OTHER_INFO" />
+	</logger>
+
+	
+	<root>
+		<level value="info" />
+		<appender-ref ref="STDOUT" />
+	</root>
+
+</configuration>
