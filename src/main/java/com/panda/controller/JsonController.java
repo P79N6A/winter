@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
+@RequestMapping("json")
 public class JsonController {
 
 	private static final Logger logger = LoggerFactory.getLogger(JsonController.class);
@@ -17,10 +18,15 @@ public class JsonController {
 	@RequestMapping(value = "/hello")
 	@ResponseBody
 	public Object  getData(){
-		logger.info("request");
+		logger.trace("trace");
+		logger.debug("debug");
+		logger.info("info");
+		logger.warn("warn");
 		Map<String, String> map = new HashMap<String,String>();
 		map.put("name", "zz");
 		map.put("sex", "男");
+
+		
 		return map;
 	}
 }
