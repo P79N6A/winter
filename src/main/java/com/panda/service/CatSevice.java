@@ -3,20 +3,39 @@ package com.panda.service;
 public class CatSevice {
 	
 	public static void main(String[] args) {
-//		 Transaction t = Cat.newTransaction("TEST", "test.method");
-//
-//	        Cat.logEvent("Method_test", "good");
-//	        Cat.logEvent("Method_event", "bad");
-//
-//	        int nextInt = new Random().nextInt(3);
-//	        //logger.info("nextInt: " + nextInt);
-//	        if (nextInt % 2 == 0) {
-//	            t.setStatus(Transaction.SUCCESS);
-//	        } else {
-//	            t.setStatus(String.valueOf(nextInt));
-//	        }
-//
-//	        t.complete();
-	    }
+		Body body = new Body();
+		body.setName("xx");
+		Body dBody = null;
+		try {
+			dBody = (Body) body.clone();
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+		}
+		System.out.println(body == dBody);
+		System.out.println(body.getName() == dBody.getName());
+		
+	}
+	
+}
+
+
+class Body implements Cloneable{
+	private String name;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		
+		return super.clone();
+	}
+	
+	
 	
 }

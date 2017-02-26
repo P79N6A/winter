@@ -3,7 +3,8 @@
 	  
 	<property name="LOG_DIR" value="logs" />
 	<property name="PATTERN" value="[winter] %d{yyyy-MM-dd HH:mm:ss.SSS} [%thread][%C-%L] %-5level - %msg%n%ex{full}"/>
-
+	<property resource="jdbc.properties"></property>
+	
  	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
 		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
 			<pattern>${PATTERN}</pattern>
@@ -63,12 +64,26 @@
 		</filter>
 	</appender>
 	
-	<!-- <appender name="catAppender" class="com.dianping.cat.log4j.CatAppender"></appender> -->
+  	<!-- <appender name="catXAppender" class="com.panda.service.CatXAppender"></appender> -->
 
+	<appender name="DBAppender" class="ch.qos.logback.classic.db.DBAppender">
+	    <connectionSource
+	      class="ch.qos.logback.core.db.DataSourceConnectionSource">
+	      <dataSource
+	        	class="com.mchange.v2.c3p0.ComboPooledDataSource" >
+	        <driverClass>${jdbc.driver}</driverClass>
+	        <jdbcUrl>${jdbc.url}</jdbcUrl>
+	        <user>${jdbc.user}</user>
+	        <password>${jdbc.password}</password>
+	      </dataSource>
+	    </connectionSource>
+	    
+	  </appender>
+	
 	<logger name="com.panda" additivity="false">
 		<level value="debug" />
 		<appender-ref ref="APP_LOG" />
-		<!-- <appender-ref ref="catAppender" /> -->
+		<appender-ref ref="DBAppender" />
 		<appender-ref ref="STDOUT" />
 	</logger>
 	
@@ -83,14 +98,13 @@
 	
 	<logger name="org.springframework" additivity="false">
 		<level value="info" />
-		<appender-ref ref="OTHER_INFO" />
 	</logger>
 
 	
 	<root>
 		<level value="info" />
 		<appender-ref ref="STDOUT" />
-		<!-- <appender-ref ref="catAppender" /> -->
+		<appender-ref ref="DBAppender" />
 	</root>
 
 </configuration>
