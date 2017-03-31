@@ -8,7 +8,7 @@
   
   <properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<spring-version>3.1.2.RELEASE</spring-version>
+		<spring-version>4.2.2.RELEASE</spring-version>
 		<querydsl.version>2.9.0</querydsl.version>
 		<skipTests>true</skipTests>
 	</properties>
@@ -27,11 +27,6 @@
 			<groupId>taglibs</groupId>
 			<artifactId>standard</artifactId>
 			<version>1.1.2</version>
-		</dependency>
-		<dependency>
-			 <groupId>org.apache.velocity</groupId>
-			  <artifactId>velocity</artifactId>
-			  <version>1.7</version>
 		</dependency>
 		
 		<!-- 文件上传 -->
@@ -90,13 +85,7 @@
 
 		<dependency>
 			<groupId>org.springframework</groupId>
-			<artifactId>spring-expression</artifactId>
-			<version>${spring-version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-aspects</artifactId>
+			<artifactId>spring-aop</artifactId>
 			<version>${spring-version}</version>
 		</dependency>
 		
@@ -146,29 +135,24 @@
 			<artifactId>logback-core</artifactId>
 			<version>1.0.13</version>
 		</dependency>
-		<!-- <dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-access</artifactId>
-			<version>1.0.13</version>
-		</dependency> -->
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
 			<version>1.0.13</version>
 		</dependency>
-		
+		<!-- spring mvc convert json data-->
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-mapper-asl</artifactId>
 			<version>1.9.9</version>
 		</dependency>
-
 		<dependency>
-			<groupId>org.codehaus.jackson</groupId>
-			<artifactId>jackson-core-asl</artifactId>
-			<version>1.9.9</version>
-			<type>pom</type>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>2.7.3</version>
 		</dependency>
+		
+		<!-- db -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
@@ -180,23 +164,6 @@
 			<artifactId>commons-codec</artifactId>
 			<version>1.6</version>
 		</dependency>
-		<!-- datasource -->
-		<dependency>
-		    <groupId>com.mchange</groupId>
-		    <artifactId>c3p0</artifactId>
-		    <version>0.9.5.2</version>
-		</dependency>
-		<!-- cat -->
-		<!-- <dependency>
-			 <groupId>com.dianping.cat</groupId>
-			  <artifactId>cat-client</artifactId>
-			  <version>1.4.0</version>
-		</dependency>
-	 	<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>1.2.14</version>
-		</dependency> -->
   </dependencies>
   
   <build>

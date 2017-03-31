@@ -19,17 +19,10 @@ public class JsonController {
 	@RequestMapping(value = "/hello")
 	@ResponseBody
 	public Object  getData(){
-		MDC.put("name", "zhanghui");
 		Map<String, String> map = new HashMap<String,String>();
 		map.put("name", "zz");
 		map.put("sex", "男");
 		logger.info("男");
-		
-		try {
-			int a = Integer.valueOf(map.get("sex"));
-		} catch (Exception e) {
-			logger.error("转换错误 ",e);
-		}
 		
 		return map;
 	}

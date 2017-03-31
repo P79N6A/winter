@@ -2,6 +2,10 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 	xmlns="http://java.sun.com/xml/ns/javaee" 
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+	<error-page>
+		<error-code>404</error-code>
+		<location>/WEB-INF/common/error.jsp</location>
+	</error-page>
 	
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
@@ -31,35 +35,18 @@
 	  </filter-mapping>
 	
 	<servlet>
-		<servlet-name>optimus</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet
-		</servlet-class>
+		<servlet-name>winter</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 
 	<servlet-mapping>
-		<servlet-name>optimus</servlet-name>
+		<servlet-name>winter</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 	
-	<servlet-mapping>
-		<servlet-name>default</servlet-name>
-		<url-pattern>*.ico</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>default</servlet-name>
-		<url-pattern>*.js</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>default</servlet-name>
-		<url-pattern>*.css</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>default</servlet-name>
-		<url-pattern>*.png</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>default</servlet-name>
-		<url-pattern>*.gif</url-pattern>
-	</servlet-mapping>
+	
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
 </web-app>

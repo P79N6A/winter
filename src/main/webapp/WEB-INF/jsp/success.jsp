@@ -7,6 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-success
+	<div style="width:800px;text-align:center">
+		<p>成功</p>
+		<p><img alt="success" src="/img/success.jpg" width="100%"/></p>
+	</div>
 </body>
 </html>

@@ -4,13 +4,13 @@
 	xmlns:context="http://www.springframework.org/schema/context" xmlns:aop="http://www.springframework.org/schema/aop" 
 	xsi:schemaLocation="
         http://www.springframework.org/schema/beans 
-        http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+        http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
         http://www.springframework.org/schema/mvc
-        http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd
+        http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
         http://www.springframework.org/schema/context 
-        http://www.springframework.org/schema/context/spring-context-4.1.xsd
+        http://www.springframework.org/schema/context/spring-context-4.2.xsd
         http://www.springframework.org/schema/aop
-		http://www.springframework.org/schema/aop/spring-aop-4.1.xsd">
+		http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
 	
 	<!-- <context:annotation-config/> -->
 	<context:component-scan base-package="com.panda.controller" />
@@ -23,12 +23,29 @@
             </list>
         </property>
     </bean>
-	
+	<!-- rest json related... start -->
+    <bean id="mappingJacksonHttpMessageConverter"
+          class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+        <property name="supportedMediaTypes">
+            <list>
+                <value>application/json;charset=UTF-8</value>
+            </list>
+        </property>
+    </bean>
+    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+        <property name="messageConverters">
+            <list>
+                <ref bean="mappingJacksonHttpMessageConverter"/>
+            </list>
+        </property>
+    </bean>
+    <!-- rest json related... end -->
+    
 	<mvc:annotation-driven />
 	
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 
 		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
-		<property name="prefix" value="/jsp/" />
+		<property name="prefix" value="/WEB-INF/jsp/" />
 		<property name="suffix" value=".jsp" />
 	</bean> 
 	
@@ -39,4 +56,6 @@
 		<property name="defaultEncoding" value="utf-8" />
 	</bean> 
 	
+	<!-- 静态资源处理器 当其他HandlerMappings无法进行解析处理时由此handler转发给容器默认servlet处理-->
+	<mvc:default-servlet-handler/>
 </beans>
