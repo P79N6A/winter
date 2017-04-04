@@ -11,7 +11,6 @@
         http://www.springframework.org/schema/aop
         http://www.springframework.org/schema/aop/spring-aop.xsd">
      
-    <!-- <context:annotation-config/> -->
 	<context:component-scan base-package="com.panda.service" />
 	
 	<!-- spring aop config -->
@@ -26,6 +25,5 @@
 		</property>
 	</bean>
 	
-	<!-- <import resource="application-datasource.xml" />
-	<import resource="classpath*:application.xml"></import> -->
+	
 </beans>
