@@ -24,7 +24,7 @@
         </property>
     </bean>
 	<!-- rest json related... start -->
-    <bean id="mappingJacksonHttpMessageConverter"
+    <!-- <bean id="mappingJacksonHttpMessageConverter"
           class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
         <property name="supportedMediaTypes">
             <list>
@@ -38,9 +38,10 @@
                 <ref bean="mappingJacksonHttpMessageConverter"/>
             </list>
         </property>
-    </bean>
+    </bean> -->
     <!-- rest json related... end -->
     
+    <!-- AnnotationDrivenBeanDefinitionParser -->
 	<mvc:annotation-driven />
 	
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 

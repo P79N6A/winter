@@ -16,7 +16,7 @@
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 	
-	 <!-- 解决post乱码问题的过滤器 -->
+	 <!-- 解决post乱码问题的过滤器 get乱码在Tomcat的server.xml里Connector加上URIEncoding="UTF-8"-->
 	  <filter>
 	      <filter-name>CharacterEncodingFilter</filter-name>
 	      <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
