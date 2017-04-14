@@ -44,6 +44,13 @@
     <!-- AnnotationDrivenBeanDefinitionParser -->
 	<mvc:annotation-driven />
 	
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**"/>
+			<bean class="com.panda.interceptor.MyInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 
 		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
 		<property name="prefix" value="/WEB-INF/jsp/" />
