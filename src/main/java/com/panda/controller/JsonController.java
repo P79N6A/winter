@@ -6,6 +6,7 @@ import java.util.Map;
 import org.omg.CosNaming.NamingContextExtPackage.StringNameHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -14,12 +15,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.panda.bean.User;
+import com.panda.service.UserService;
 
 @Controller
 @RequestMapping("json")
 public class JsonController {
 
 	private static final Logger logger = LoggerFactory.getLogger(JsonController.class);
+	
+	@Autowired
+	private UserService userService;
 	
 	@RequestMapping(value = "/hello")
 	@ResponseBody
@@ -34,6 +39,8 @@ public class JsonController {
 		User user = new User();
 		user.setName("张三");
 		user.setAge(10);
+		
+		logger.info(userService.getUser());
 		return user;
 	}
 }
