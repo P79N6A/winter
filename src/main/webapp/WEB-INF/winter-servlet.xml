@@ -24,6 +24,7 @@
         </property>
     </bean>
 	<!-- rest json related... start -->
+	<!-- jackson的包加载进来会自动装此bean，不用再注册 -->
     <!-- <bean id="mappingJacksonHttpMessageConverter"
           class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
         <property name="supportedMediaTypes">
@@ -54,6 +55,29 @@
 			<bean class="com.panda.interceptor.MyInterceptor2"/>
 		</mvc:interceptor>
 	</mvc:interceptors>
+	
+	<!-- 视图解析器，所有modelview返回自动添加前后缀 -->
+	<bean id="velocityConfigurer"
+		class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+		<property name="resourceLoaderPath">
+			<value>WEB-INF/velocity/</value>
+		</property>
+		<property name="velocityProperties">
+			<props>
+				<prop key="input.encoding">UTF-8</prop>
+				<prop key="output.encoding">UTF-8</prop>
+				<prop key="contentType">text/html;charset=UTF-8</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="velocityViewResolver"
+		class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
+		<property name="suffix">
+			<value>.vm</value>
+		</property>
+		<property name="contentType"><value>text/html;charset=UTF-8</value></property>
+	</bean>
 	
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 
 		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />

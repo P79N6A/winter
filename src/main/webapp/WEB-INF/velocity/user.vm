@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>show all users</title>
+</head>
+<body>
+    <table >
+        #foreach($user in $users)
+            <tr >
+                <td >$user</td>
+            </tr>
+        #end
+    </table>
+</body>
+</html>  
