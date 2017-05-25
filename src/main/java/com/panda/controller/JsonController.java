@@ -56,6 +56,7 @@ public class JsonController {
 			@RequestParam(name="names") String[] names,HttpServletRequest request){
 		Map<String, Object> map = new HashMap<String,Object>();
 		map.put("phone", phone);
+		//map.put("names", request.getParameterValues("names"));
 		map.put("names", names);
 		
 		return map;
