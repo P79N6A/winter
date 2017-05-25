@@ -3,6 +3,8 @@ package com.panda.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.omg.CosNaming.NamingContextExtPackage.StringNameHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,6 +44,21 @@ public class JsonController {
 		
 		logger.info(userService.getUser());
 		return user;
+	}
+	
+	/*
+	 * http://localhost:8080/json/hi?phone=1&names=a&names=b
+	 * 参数注入数组
+	 */
+	@RequestMapping(value = "/hi")
+	@ResponseBody
+	public Object  getHi(@RequestParam(name="phone") String phone,
+			@RequestParam(name="names") String[] names,HttpServletRequest request){
+		Map<String, Object> map = new HashMap<String,Object>();
+		map.put("phone", phone);
+		map.put("names", names);
+		
+		return map;
 	}
 }
 
