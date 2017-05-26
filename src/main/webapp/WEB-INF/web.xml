@@ -7,6 +7,12 @@
 		<location>/WEB-INF/common/error.jsp</location>
 	</error-page>
 	
+	<!-- 通过指定contextClass参数，让spring使用AnnotationConfigWebApplicationContext而非XmlWebApplicationContext启动容器-->
+	<!-- <context-param>
+		<param-name>contextClass</param-name>
+		<param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
+	</context-param> -->
+	
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath*:applicationContext.xml</param-value>
