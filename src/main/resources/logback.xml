@@ -73,7 +73,7 @@
 	</logger>
 	
 	
-	<logger name="java.sql" additivity="false">
+	<logger name="org.apache.ibatis" additivity="false">
 		<level value="info" />
 		<appender-ref ref="SQL_INFO" />
 		<appender-ref ref="SQL_ERROR" />

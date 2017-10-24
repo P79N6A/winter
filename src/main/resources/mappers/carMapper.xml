@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.panda.dao.CarMapper">
+	<insert id="add" parameterType="Car">
+		insert into car (name,price) 
+			values(#{name},#{price})
+	</insert>
+	
+	<update id="update"  parameterType="Car">
+		update car set price=#{price}
+			where name=#{name}
+	</update>
+	
+	
+</mapper>
