@@ -18,9 +18,9 @@ public class CarService {
 		carMapper.add(car);
 	}
 	
-	@Transactional(readOnly=true)
 	public void update(Car car){
 		int a = carMapper.update(car);
 		System.out.println(a);
+		throw new RuntimeException();
 	}
 }

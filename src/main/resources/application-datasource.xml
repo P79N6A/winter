@@ -52,16 +52,16 @@
     	<property name="dataSource" ref="dataSource"></property>
     </bean>
     
-   <!--  <tx:advice id="txAdvice" transaction-manager="transactionManager">
+   <tx:advice id="txAdvice" transaction-manager="transactionManager">
     	<tx:attributes>
-    		<tx:method name="update*" read-only="true" rollback-for="RuntimeException"/>
+    		<tx:method name="update" rollback-for="ServletException"/>
     	</tx:attributes>
     </tx:advice>
     
     <aop:config>
-    	<aop:pointcut expression="execution(* com.wuxi.service.*service.*(..))" id="serviceMethods"/>
+    	<aop:pointcut expression="execution(* com.panda.service.*Service.*(..))" id="serviceMethods"/>
     	<aop:advisor pointcut-ref="serviceMethods" advice-ref="txAdvice"/>
-    </aop:config> -->
+    </aop:config>
     
-    <tx:annotation-driven transaction-manager="transactionManager" />
+   <!--  <tx:annotation-driven transaction-manager="transactionManager" /> -->
 </beans>

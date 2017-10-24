@@ -10,9 +10,6 @@ public class StartService {
 	public static void main(String[] args) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		CarService carService = (CarService)context.getBean("carService");
-		carService.update(new Car("baoma",4));
-		
-		
-		
+		carService.update(new Car("baoma",2));
 	}
 }
