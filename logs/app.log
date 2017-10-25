@@ -12,3 +12,11 @@
 [winter] 2017-10-25 09:26:16 [main][com.panda.service.CarService-26] INFO  - price:3
 [winter] 2017-10-25 09:27:38 [main][com.panda.service.CarService-27] INFO  - price:3
 [winter] 2017-10-25 10:13:45 [main][com.panda.service.CarService-27] INFO  - price:3
+[winter] 2017-10-25 10:26:32 [main][com.panda.service.CarService-27] INFO  - price:3
+[winter] 2017-10-25 10:54:30 [main][com.panda.service.CarService-29] INFO  - price:1
+[winter] 2017-10-25 10:56:25 [main][com.panda.service.CarService-30] INFO  - price:1
+[winter] 2017-10-25 10:58:10 [main][com.panda.service.CarService-30] INFO  - price:1
+[winter] 2017-10-25 10:59:41 [main][com.panda.service.CarService-30] INFO  - price:1
+[winter] 2017-10-25 11:01:37 [main][com.panda.service.CarService-30] INFO  - price:1
+[winter] 2017-10-25 11:10:08 [main][com.panda.service.CarService-30] INFO  - price:1
+[winter] 2017-10-25 11:12:14 [main][com.panda.service.CarService-30] INFO  - price:1

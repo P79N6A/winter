@@ -4,10 +4,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.panda.bean.Car;
 import com.panda.dao.CarMapper;
+import com.panda.dao.UserMapper;
 
 @Service("carService")
 public class CarService {
@@ -15,6 +17,7 @@ public class CarService {
 	
 	@Autowired
 	CarMapper carMapper;
+	
 	
 	public void add(Car car){
 		carMapper.add(car);
@@ -25,6 +28,6 @@ public class CarService {
 		carMapper.update(car);
 		String price = carMapper.selectPrice(car.getName());
 		logger.info("price:{}",price);
-		//throw new RuntimeException();
+		
 	}
 }
