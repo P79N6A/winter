@@ -1,5 +1,7 @@
 package com.panda.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,18 +11,20 @@ import com.panda.dao.CarMapper;
 
 @Service("carService")
 public class CarService {
-
+	private static final Logger logger = LoggerFactory.getLogger(CarService.class);
+	
 	@Autowired
 	CarMapper carMapper;
-	
 	
 	public void add(Car car){
 		carMapper.add(car);
 	}
 	
+	@Transactional
 	public void update(Car car){
-		int a = carMapper.update(car);
-		System.out.println(a);
-		throw new RuntimeException();
+		carMapper.update(car);
+		String price = carMapper.selectPrice(car.getName());
+		logger.info("price:{}",price);
+		//throw new RuntimeException();
 	}
 }

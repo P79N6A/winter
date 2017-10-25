@@ -147,6 +147,12 @@
 			<artifactId>logback-classic</artifactId>
 			<version>1.0.13</version>
 		</dependency>
+		<!-- log4j桥接，用来输出 JAR包中log4j Logging (log4j) -->  
+		<dependency>  
+	        <groupId>org.slf4j</groupId>  
+	        <artifactId>log4j-over-slf4j</artifactId>  
+	        <version>1.6.0</version>  
+	    </dependency> 
 		<!-- spring mvc convert json data-->
 	   <dependency>
 			<groupId>org.codehaus.jackson</groupId>

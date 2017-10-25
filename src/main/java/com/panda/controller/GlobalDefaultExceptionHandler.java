@@ -1,4 +1,4 @@
-package com.panda.exception;
+package com.panda.controller;
 
 import javax.servlet.http.HttpServletRequest;
 

@@ -11,5 +11,8 @@
 			where name=#{name}
 	</update>
 	
-	
+	<select id="selectPrice" resultType="String" parameterType="String">
+		select price from car 
+			where name=#{name}
+	</select>
 </mapper>

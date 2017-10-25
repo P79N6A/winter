@@ -9,7 +9,6 @@
 			<pattern>${PATTERN}</pattern>
 			<charset>UTF-8</charset>
 		</encoder>
-		
 	</appender>
 	
 	<appender name="APP_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
@@ -63,8 +62,6 @@
 		</filter>
 	</appender>
 	
-
-	
 	
 	<logger name="com.panda" additivity="false">
 		<level value="debug" />
@@ -73,20 +70,20 @@
 	</logger>
 	
 	
-	<logger name="org.apache.ibatis" additivity="false">
-		<level value="info" />
-		<appender-ref ref="SQL_INFO" />
-		<appender-ref ref="SQL_ERROR" />
+	<logger name="org.springframework.transaction" additivity="false">
+		<level value="debug" />
 		<appender-ref ref="STDOUT" />
 	</logger>
-
+	
+	<logger name="org.springframework.jdbc" additivity="false">
+		<level value="debug" />
+		<appender-ref ref="STDOUT" />
+	</logger>
 	
 	<logger name="org.springframework" additivity="false">
-		<level value="info" />
-		<appender-ref ref="APP_LOG" />
+		<level value="error" />
 		<appender-ref ref="STDOUT" />
 	</logger>
-
 	
 	<root>
 		<level value="info" />

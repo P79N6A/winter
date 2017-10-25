@@ -7,4 +7,6 @@ public interface CarMapper {
 	public int add(Car car);
 	
 	public int update(Car car);
+	
+	public String selectPrice(String name);
 }
