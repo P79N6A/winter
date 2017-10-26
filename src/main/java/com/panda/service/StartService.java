@@ -13,7 +13,7 @@ public class StartService {
 //		CarService carService = (CarService)context.getBean("carService");
 //		carService.update(new Car("benchi",3));
 		UserService userService = (UserService)context.getBean("userService");
-		userService.getUser();
+		userService.method1();
 		
 	}
 }

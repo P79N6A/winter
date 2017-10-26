@@ -25,7 +25,7 @@ public class CarService {
 	
 	@Transactional
 	public void update(Car car){
-		carMapper.update(car);
+		System.out.println(carMapper.update(car));
 		String price = carMapper.selectPrice(car.getName());
 		logger.info("price:{}",price);
 		
