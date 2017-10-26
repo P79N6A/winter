@@ -18,7 +18,6 @@ public class CarService {
 	@Autowired
 	CarMapper carMapper;
 	
-	
 	public void add(Car car){
 		carMapper.add(car);
 	}
