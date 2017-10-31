@@ -5,12 +5,6 @@
     <title>show all users</title>
 </head>
 <body>
-    <table >
-        #foreach($user in $users)
-            <tr >
-                <td >$user</td>
-            </tr>
-        #end
-    </table>
+    ${user.name}
 </body>
 </html>  

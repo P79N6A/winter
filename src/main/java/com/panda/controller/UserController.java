@@ -48,7 +48,7 @@ public class UserController {
 		logger.info(body);
 		
 		logger.info(user.getName());
-		ModelAndView view = new ModelAndView("createSuccess");
+		ModelAndView view = new ModelAndView("show");
 		view.addObject("user",user);
 		return view;
 	}
