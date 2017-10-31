@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,7 +32,7 @@ public class JsonController {
 	@RequestMapping(value = "/hello")
 	@ResponseBody
 	public Object  getData(@RequestBody String body,@RequestHeader(name="Content-type") String contentType,
-			@RequestParam(name="phone") String phone,@RequestParam String name){
+			@RequestParam(name="phone") String phone,@RequestParam String name,@CookieValue String cookie){
 		logger.info("body: " + body);
 		logger.info("content-type: " + contentType);
 		Map<String, String> map = new HashMap<String,String>();

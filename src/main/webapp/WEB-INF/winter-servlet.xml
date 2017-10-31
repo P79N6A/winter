@@ -22,39 +22,24 @@
             </list>
         </property>
     </bean>
-	<!-- rest json related... start -->
-	<!-- jackson的包加载进来会自动装此bean，不用再注册 -->
-    <!-- <bean id="mappingJacksonHttpMessageConverter"
-          class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
-        <property name="supportedMediaTypes">
-            <list>
-                <value>application/json;charset=UTF-8</value>
-            </list>
-        </property>
-    </bean>
-    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
-        <property name="messageConverters">
-            <list>
-                <ref bean="mappingJacksonHttpMessageConverter"/>
-            </list>
-        </property>
-    </bean> -->
-    <!-- rest json related... end -->
     
     <!-- AnnotationDrivenBeanDefinitionParser -->
-	<mvc:annotation-driven />
-	
-	<bean class="org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver"/>
+	<mvc:annotation-driven >
+		<!-- 添加自定义converter(默认7个仍在) -->
+		<mvc:message-converters>
+			<bean class="com.panda.web.ToStringHttpMessageConverter"></bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
 	
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**"/>
 			<bean class="com.panda.interceptor.MyInterceptor"/>
 		</mvc:interceptor>
-		<mvc:interceptor>
+		<!-- <mvc:interceptor>
 			<mvc:mapping path="/**"/>
 			<bean class="com.panda.interceptor.MyInterceptor2"/>
-		</mvc:interceptor>
+		</mvc:interceptor> -->
 	</mvc:interceptors>
 	
 	<!-- 视图解析器，所有modelview返回自动添加前后缀 -->
@@ -78,6 +63,7 @@
 			<value>.vm</value>
 		</property>
 		<property name="contentType"><value>text/html;charset=UTF-8</value></property>
+		<property name="order" value="1"/>
 	</bean>
 	
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 

@@ -5,4 +5,5 @@ import com.panda.bean.User;
 public interface UserMapper {
 
 	public int updateAge(User user);
+	
 }
