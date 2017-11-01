@@ -68,4 +68,9 @@ public class UserController {
 	public String update(){
 		return "updateUser";
 	}
+	
+	@RequestMapping("setting")
+	public String setting(){
+		return "setting";
+	}
 }
