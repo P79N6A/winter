@@ -25,9 +25,11 @@
     
     <!-- AnnotationDrivenBeanDefinitionParser -->
 	<mvc:annotation-driven >
+	
 		<!-- 添加自定义converter(默认7个仍在) -->
 		<mvc:message-converters>
 			<bean class="com.panda.web.ToStringHttpMessageConverter"></bean>
+			<bean class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter"></bean>
 		</mvc:message-converters>
 	</mvc:annotation-driven>
 	
@@ -42,12 +44,26 @@
 		</mvc:interceptor> -->
 	</mvc:interceptors>
 	
+	<bean id="freeMarkerConfigurer" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+		<property name="templateLoaderPaths" value="WEB-INF/freemarker"/>
+		<property name="defaultEncoding" value="UTF-8"/>
+		<property name="freemarkerSettings">
+			<props>
+				<!-- 将值为null的属性对象转化为空字符串，而不是抛出异常 -->
+				<prop key="classic_compatible">true</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="FreeMarkerViewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+		<property name="suffix" value=".ftl"/>
+		<property name="order" value="1"/>
+		<property name="contentType" value="text/html;charset=UTF-8"/>
+	</bean>
+	
 	<!-- 视图解析器，所有modelview返回自动添加前后缀 -->
 	<bean id="velocityConfigurer"
 		class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
-		<property name="resourceLoaderPath">
-			<value>WEB-INF/velocity/</value>
-		</property>
+		<property name="resourceLoaderPath" value="WEB-INF/velocity"/>
 		<property name="velocityProperties">
 			<props>
 				<prop key="input.encoding">UTF-8</prop>
@@ -56,18 +72,16 @@
 			</props>
 		</property>
 	</bean>
-
 	<bean id="velocityViewResolver"
 		class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
-		<property name="suffix">
-			<value>.vm</value>
-		</property>
-		<property name="contentType"><value>text/html;charset=UTF-8</value></property>
-		<property name="order" value="1"/>
+		<property name="suffix" value=".vm"/>
+		<property name="contentType" value="text/html;charset=UTF-8"/>
+		<property name="order" value="5"/>
 	</bean>
 	
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 
-		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+		<!-- 当jsp页面使用了jstl的国际化标签(如：<fmt:message/>)才需要使用jstlView替换默认的视图实现类-->
+		<!-- <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" /> -->
 		<property name="prefix" value="/WEB-INF/jsp/" />
 		<property name="suffix" value=".jsp" />
 	</bean> 

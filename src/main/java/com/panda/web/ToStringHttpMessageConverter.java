@@ -24,7 +24,7 @@ public class ToStringHttpMessageConverter extends AbstractHttpMessageConverter<O
 		return User.class == clazz;
 	}
 
-	//从请求体封装数据 对应RequestBody 用String接收
+	//从请求体封装数据 对应RequestBody 这里我用String接收
 	@Override
 	protected Object readInternal(Class<? extends Object> clazz, HttpInputMessage inputMessage)
 			throws IOException, HttpMessageNotReadableException {

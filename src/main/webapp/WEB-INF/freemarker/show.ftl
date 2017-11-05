@@ -12,6 +12,6 @@
 </head>
 	<body>
 		<p>${name}</p>
-		<p>${user.name}</p>
+		<p>${user.age}</p>
 	</body>
 </html>  

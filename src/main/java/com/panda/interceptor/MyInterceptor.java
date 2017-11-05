@@ -21,13 +21,13 @@ public class MyInterceptor extends HandlerInterceptorAdapter{
 
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
-		logger.info("post 1");
+		logger.info("method handle post 1");
 		
 	}
 
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
 			throws Exception {
-		logger.info("completion 1");
+		logger.info("view render completion 1");
 	}
 	
 	

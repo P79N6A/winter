@@ -17,6 +17,7 @@ public class User implements Serializable{
 	}
 	
 	private String name;
+	
 	private int age;
 	
 	public String getName() {

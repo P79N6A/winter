@@ -70,7 +70,7 @@
 	</logger>
 	
 	
-	<logger name="org.springframework.transaction" additivity="false">
+	<!-- <logger name="org.springframework.transaction" additivity="false">
 		<level value="debug" />
 		<appender-ref ref="STDOUT" />
 	</logger>
@@ -78,7 +78,7 @@
 	<logger name="org.springframework.jdbc" additivity="false">
 		<level value="debug" />
 		<appender-ref ref="STDOUT" />
-	</logger>
+	</logger> -->
 	
 	<logger name="org.springframework.web" additivity="false">
 		<level value="trace" />

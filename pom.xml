@@ -86,17 +86,21 @@
 			<artifactId>spring-tx</artifactId>
 			<version>${spring-version}</version>
 		</dependency>
-	 	 <dependency>
+	 	<dependency>
              <groupId>org.springframework</groupId>
              <artifactId>spring-jdbc</artifactId>
              <version>${spring-version}</version>
-         </dependency>
+        </dependency>
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-oxm</artifactId>
+		    <version>${spring-version}</version>
+		</dependency>
         <!--  <dependency>
              <groupId>org.springframework</groupId>
              <artifactId>spring-orm</artifactId>
              <version>${spring-version}</version>
          </dependency> -->
-         
          <dependency>
                <groupId>org.springframework</groupId>
                <artifactId>spring-test</artifactId>
@@ -109,17 +113,12 @@
 			<scope>test</scope>
 		</dependency>
 		
-		<!-- aspectj -->
-		<!-- <dependency>
-			<groupId>org.aspectj</groupId>
-			<artifactId>aspectjrt</artifactId>
-			<version>1.6.0</version>
-		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.freemarker/freemarker -->
 		<dependency>
-			<groupId>org.aspectj</groupId>
-			<artifactId>aspectjweaver</artifactId>
-			<version>1.6.12</version>
-		</dependency> -->
+		    <groupId>org.freemarker</groupId>
+		    <artifactId>freemarker</artifactId>
+		    <version>2.3.23</version>
+		</dependency>
 		<!-- velocity -->
 		 <dependency>
              <groupId>org.apache.velocity</groupId>
@@ -131,28 +130,7 @@
              <artifactId>velocity-tools</artifactId>
              <version>2.0</version>
          </dependency> -->
-		<!-- log -->
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>1.6.0</version>
-		</dependency>
-		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-core</artifactId>
-			<version>1.0.13</version>
-		</dependency>
-		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-classic</artifactId>
-			<version>1.0.13</version>
-		</dependency>
-		<!-- log4j桥接，用来输出 JAR包中log4j Logging (log4j) -->  
-		<dependency>  
-	        <groupId>org.slf4j</groupId>  
-	        <artifactId>log4j-over-slf4j</artifactId>  
-	        <version>1.6.0</version>  
-	    </dependency> 
+		
 		<!-- spring mvc convert json data-->
 	   <dependency>
 			<groupId>org.codehaus.jackson</groupId>
@@ -212,6 +190,28 @@
 			<artifactId>dubbo</artifactId>
 			<version>2.5.3</version>
 		</dependency> -->
+		<!-- log -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.6.0</version>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-core</artifactId>
+			<version>1.0.13</version>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.0.13</version>
+		</dependency>
+		<!-- log4j桥接，用来输出 JAR包中log4j Logging (log4j) -->  
+		<dependency>  
+	        <groupId>org.slf4j</groupId>  
+	        <artifactId>log4j-over-slf4j</artifactId>  
+	        <version>1.6.0</version>  
+	    </dependency> 
   </dependencies>
   
   <build>
