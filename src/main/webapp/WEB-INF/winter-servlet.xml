@@ -93,6 +93,7 @@
 		<property name="defaultEncoding" value="utf-8" />
 	</bean> 
 	
-	<!-- 静态资源处理器 当其他HandlerMappings无法进行解析处理时由此handler转发给容器默认servlet处理器处理-->
-	<mvc:default-servlet-handler/>
+	<!-- 静态资源处理器-->
+	<!-- <mvc:default-servlet-handler/> -->
+	<mvc:resources  mapping="/img/**" location="/"/>
 </beans>
