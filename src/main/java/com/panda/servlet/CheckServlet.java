@@ -24,6 +24,7 @@ public class CheckServlet extends HttpServlet{
 		System.out.println(getServletContext().getAttribute("name"));
 		
 		RequestDispatcher view = req.getRequestDispatcher("index.html");
+		
 		view.forward(req, resp);
 	}
 
