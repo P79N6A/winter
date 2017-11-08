@@ -17,14 +17,13 @@ public class CheckServlet extends HttpServlet{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private static final String Name = CheckServlet.class.getName();
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println(Name);
-		System.out.println(CheckServlet.class.getSimpleName());
+		System.out.println(CheckServlet.class.getName());
+		System.out.println(getServletContext().getAttribute("name"));
 		
-		RequestDispatcher view = req.getRequestDispatcher("/WEB-INF/jsp/success.jsp");
+		RequestDispatcher view = req.getRequestDispatcher("index.html");
 		view.forward(req, resp);
 	}
 

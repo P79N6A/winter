@@ -23,9 +23,19 @@
         </property>
     </bean>
     
+    
+    <bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+    	<property name="urlMap">
+    		<map>
+    		 <entry key="/show" value-ref="urlController"></entry>
+    		</map>
+    	</property>
+    </bean>
+    
+    <bean id="urlController" class="com.panda.controller.UrlController"></bean>
+    
     <!-- AnnotationDrivenBeanDefinitionParser -->
 	<mvc:annotation-driven >
-	
 		<!-- 添加自定义converter(默认7个仍在) -->
 		<mvc:message-converters>
 			<bean class="com.panda.web.ToStringHttpMessageConverter"></bean>
@@ -94,6 +104,6 @@
 	</bean> 
 	
 	<!-- 静态资源处理器-->
-	<!-- <mvc:default-servlet-handler/> -->
-	<mvc:resources  mapping="/img/**" location="/"/>
+	<mvc:default-servlet-handler/>
+	<mvc:resources  mapping="/img/**" location="/img/"/>
 </beans>

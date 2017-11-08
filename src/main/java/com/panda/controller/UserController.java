@@ -19,6 +19,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -28,6 +29,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.handler.SimpleUrlHandlerMapping;
 
 import com.panda.bean.User;
 import com.panda.dao.UserMapper;
@@ -61,7 +63,10 @@ public class UserController implements ApplicationContextAware{
 		logger.info(header.toString());
 		logger.info(cookie);
 		logger.info(body);
-
+		if(!StringUtils.isEmpty(name)){
+			throw new NullPointerException();
+		}
+		
 		//getUser会在请求处理前执行，并将值赋给入参，然后再根据http请求信息对user覆盖，得到整合版的user
 		logger.info(user.getName());
 		logger.info(model.asMap().get("user").toString());

@@ -10,7 +10,7 @@
 	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 	<body>
-		<p>${name}</p>
+		<p>${user.name}</p>
 		<p>${user.age}</p>
 	</body>
 </html>  
