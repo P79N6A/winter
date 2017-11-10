@@ -25,6 +25,7 @@
     
     
     <bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+    	<!-- 生成一个SimpleUrlHandlerMapping对象，注册urlMap: {/show=urlController} -->
     	<property name="urlMap">
     		<map>
     		 <entry key="/show" value-ref="urlController"></entry>
