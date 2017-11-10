@@ -104,8 +104,8 @@
 	</bean> 
 	
 	<!-- 静态资源处理器 由SimpleUrlHandlerMapping找到处理的handler-->
-	<!-- DefaultServletHttpRequestHandler -->
+	<!-- 生成一个SimpleUrlHandlerMapping对象，注册urlMap: {/**=DefaultServletHttpRequestHandler} -->
 	<mvc:default-servlet-handler/>
-	<!-- ResourceHttpRequestHandler -->
+	<!-- 生成另一个SimpleUrlHandlerMapping对象。注册urlMap： {/img/**=ResourceHttpRequestHandler} -->
 	<mvc:resources  mapping="/img/**" location="/img/"/>
 </beans>
