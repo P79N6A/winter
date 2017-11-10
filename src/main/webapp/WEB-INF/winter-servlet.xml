@@ -103,7 +103,9 @@
 		<property name="defaultEncoding" value="utf-8" />
 	</bean> 
 	
-	<!-- 静态资源处理器-->
+	<!-- 静态资源处理器 由SimpleUrlHandlerMapping找到处理的handler-->
+	<!-- DefaultServletHttpRequestHandler -->
 	<mvc:default-servlet-handler/>
+	<!-- ResourceHttpRequestHandler -->
 	<mvc:resources  mapping="/img/**" location="/img/"/>
 </beans>
