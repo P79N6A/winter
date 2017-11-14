@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -45,5 +46,16 @@ public class CheckController {
 		 logger.info("4");
 		 write.close();
 		 logger.info("5");
+	}
+	
+	@RequestMapping("/res/{code}")
+	public void res(HttpServletRequest request,HttpServletResponse response,
+			@PathVariable("code")Integer code) throws IOException{
+		response.sendError(code);
+//		if(HttpServletResponse.SC_NOT_FOUND == code){
+//			response.sendError(HttpServletResponse.SC_NOT_FOUND);
+//		}else {
+//			response.sendRedirect("/index.html");
+//		}
 	}
 }

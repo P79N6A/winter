@@ -32,15 +32,19 @@
     		</map>
     	</property>
     </bean>
-    
     <bean id="urlController" class="com.panda.controller.UrlController"></bean>
     
+    <!-- 静态资源处理器 由SimpleUrlHandlerMapping找到处理的handler-->
+	<!-- 新生成一个SimpleUrlHandlerMapping对象，注册urlMap: {/**=DefaultServletHttpRequestHandler} -->
+	<mvc:default-servlet-handler/>
+	<!-- 生成另一个SimpleUrlHandlerMapping对象。注册urlMap： {/img/**=ResourceHttpRequestHandler} -->
+	<mvc:resources  mapping="/img/**" location="/img/"/>
+	
     <!-- AnnotationDrivenBeanDefinitionParser -->
 	<mvc:annotation-driven >
 		<!-- 添加自定义converter(默认7个仍在) -->
 		<mvc:message-converters>
 			<bean class="com.panda.web.ToStringHttpMessageConverter"></bean>
-			<bean class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter"></bean>
 		</mvc:message-converters>
 	</mvc:annotation-driven>
 	
@@ -49,10 +53,10 @@
 			<mvc:mapping path="/**"/>
 			<bean class="com.panda.interceptor.MyInterceptor"/>
 		</mvc:interceptor>
-		<!-- <mvc:interceptor>
+		<mvc:interceptor>
 			<mvc:mapping path="/**"/>
 			<bean class="com.panda.interceptor.MyInterceptor2"/>
-		</mvc:interceptor> -->
+		</mvc:interceptor>
 	</mvc:interceptors>
 	
 	<bean id="freeMarkerConfigurer" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
@@ -87,6 +91,8 @@
 		class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
 		<property name="suffix" value=".vm"/>
 		<property name="contentType" value="text/html;charset=UTF-8"/>
+		<property name="exposeRequestAttributes" value="true"/>
+		<property name="exposeSessionAttributes" value="true"/>
 		<property name="order" value="5"/>
 	</bean>
 	
@@ -95,6 +101,7 @@
 		<!-- <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" /> -->
 		<property name="prefix" value="/WEB-INF/jsp/" />
 		<property name="suffix" value=".jsp" />
+		<property name="contentType" value="text/html;charset=UTF-8"/>
 	</bean> 
 	
 	<!-- 配置文件上传 -->
@@ -104,9 +111,4 @@
 		<property name="defaultEncoding" value="utf-8" />
 	</bean> 
 	
-	<!-- 静态资源处理器 由SimpleUrlHandlerMapping找到处理的handler-->
-	<!-- 新生成一个SimpleUrlHandlerMapping对象，注册urlMap: {/**=DefaultServletHttpRequestHandler} -->
-	<mvc:default-servlet-handler/>
-	<!-- 生成另一个SimpleUrlHandlerMapping对象。注册urlMap： {/img/**=ResourceHttpRequestHandler} -->
-	<mvc:resources  mapping="/img/**" location="/img/"/>
 </beans>

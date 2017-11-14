@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
@@ -58,15 +59,15 @@ public class UserController implements ApplicationContextAware{
 	}
 	
 	@RequestMapping(value="/addUser",method=RequestMethod.POST,params={"name","age"})
-	public ModelAndView addUser(User user,Model model,@ModelAttribute("name") String name,BindingResult result,
+	public ModelAndView addUser(User user,Model model,HttpServletRequest request, @ModelAttribute("name") String name,BindingResult result,
 			@CookieValue("JSESSIONID")String cookie,@RequestBody String body,@RequestHeader Map<String, String> header){
 		logger.info(header.toString());
 		logger.info(cookie);
 		logger.info(body);
-		if(!StringUtils.isEmpty(name)){
-			throw new NullPointerException();
-		}
-		
+//		if(!StringUtils.isEmpty(name)){
+//			throw new NullPointerException();
+//		}
+		request.setAttribute("nn", "aa");
 		//getUser会在请求处理前执行，并将值赋给入参，然后再根据http请求信息对user覆盖，得到整合版的user
 		logger.info(user.getName());
 		logger.info(model.asMap().get("user").toString());

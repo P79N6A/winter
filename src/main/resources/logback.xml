@@ -80,13 +80,13 @@
 		<appender-ref ref="STDOUT" />
 	</logger> -->
 	
-	<logger name="org.springframework.web" additivity="false">
+	<!-- <logger name="org.springframework.web" additivity="false">
 		<level value="trace" />
 		<appender-ref ref="STDOUT" />
-	</logger>
+	</logger> -->
 	
 	<logger name="org.springframework" additivity="false">
-		<level value="error" />
+		<level value="trace" />
 		<appender-ref ref="STDOUT" />
 	</logger>
 	
