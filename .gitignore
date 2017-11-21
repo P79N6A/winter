@@ -3,3 +3,6 @@
 .classpath
 .externalToolBuilders/
 target/
+logs/
+.idea/*
+
