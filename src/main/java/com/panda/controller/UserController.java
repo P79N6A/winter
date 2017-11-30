@@ -73,8 +73,8 @@ public class UserController implements ApplicationContextAware{
 		logger.info(model.asMap().get("user").toString());
 		logger.info(name);
 //		ModelAndView view = new ModelAndView("redirect:/user/register");
-		ModelAndView view = new ModelAndView("forward:/user/register");		
-//		ModelAndView view = new ModelAndView("createSuccess");
+//		ModelAndView view = new ModelAndView("forward:/user/register");		
+		ModelAndView view = new ModelAndView("createSuccess");
 //		view.addObject(user);
 		return view;
 	}
