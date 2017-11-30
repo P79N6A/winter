@@ -13,7 +13,7 @@
 	</div>
 </body>
 <script type="text/javascript">
-	var url = 'ws://' + window.location.host + '/action';
+	var url = 'ws://' + window.location.hostname + ":10000" + '/note';
 	//打开websocket
 	var sock = new WebSocket(url);
 	//处理连接开启

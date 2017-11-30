@@ -18,9 +18,7 @@
 		<param-value>classpath*:applicationContext.xml</param-value>
 	</context-param>
 	
-	<listener>
-		<listener-class>com.panda.web.MyServletContextListener</listener-class>
-	</listener>
+	
 	<listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
@@ -28,6 +26,10 @@
 	<!-- 支持request、session、globalSession作用域 -->
 	<listener>
 		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+	</listener>
+	
+	<listener>
+		<listener-class>com.panda.web.MyServletContextListener</listener-class>
 	</listener>
 	
 	 <!-- 解决post乱码问题的过滤器 get乱码在Tomcat的server.xml里Connector加上URIEncoding="UTF-8"-->

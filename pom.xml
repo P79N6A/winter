@@ -187,8 +187,8 @@
 		</dependency>
 		<dependency>
 		    <groupId>io.netty</groupId>
-		    <artifactId>netty-all</artifactId>
-		    <version>4.1.12.Final</version>
+		    <artifactId>netty</artifactId>
+		    <version>3.10.5.Final</version>
 		</dependency>
 		<!-- <dependency>
 			<groupId>com.alibaba</groupId>
