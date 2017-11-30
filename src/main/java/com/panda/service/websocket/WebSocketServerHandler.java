@@ -24,7 +24,7 @@ public class WebSocketServerHandler extends SimpleChannelUpstreamHandler{
 	public void messageReceived(ChannelHandlerContext ctx, MessageEvent e) throws Exception {
 		Object message = e.getMessage();
 		String receivedMessage = message.toString();
-		logger.debug("recieve message from channel:" + receivedMessage);
+		logger.info("recieve message from channel:" + receivedMessage);
 		if(message instanceof HttpRequest){
 			logger.info("http 请求");
 			handleHttpRequest(ctx, (HttpRequest)message);
