@@ -190,6 +190,13 @@
 		    <artifactId>netty</artifactId>
 		    <version>3.10.5.Final</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.netty/netty-all -->
+		<dependency>
+		    <groupId>io.netty</groupId>
+		    <artifactId>netty-all</artifactId>
+		    <version>4.1.17.Final</version>
+		</dependency>
+		
 		<!-- <dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>dubbo</artifactId>

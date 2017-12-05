@@ -20,6 +20,9 @@ public class WebSocketServerHandler extends SimpleChannelUpstreamHandler{
 	private static final String WEBSOCKET_PATH = "/note";
 	private WebSocketServerHandshaker handshaker;
 	
+	/**
+	 * 当 ChannelHandler 被添加到 ChannelPipeline 时，它将会被分配一个 ChannelHandlerContext，它代表了 ChannelHandler 和 ChannelPipeline 之间的绑定
+	 */
 	@Override
 	public void messageReceived(ChannelHandlerContext ctx, MessageEvent e) throws Exception {
 		Object message = e.getMessage();
