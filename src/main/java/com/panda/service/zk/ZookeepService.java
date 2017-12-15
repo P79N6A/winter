@@ -38,11 +38,11 @@ public class ZookeepService implements Watcher{
 		
 		//create(zooKeeper);
 		//ls(zooKeeper);
-		//get(zooKeeper);
+		get(zooKeeper);
 		//update(zooKeeper);
 		//exits(zooKeeper);
 		//auth(zooKeeper);
-	    auth_delete(zooKeeper);
+	    //auth_delete(zooKeeper);
 	}
 	
 	
