@@ -18,9 +18,9 @@ public class KafkaService {
 	static int CONNECT_TIMEOUT = 30000;
 	
 	public static void main(String[] args) {
-		String topic = "sync-action";
-		//createTopic(topic, 2, 2, new Properties());
-		deleteTopic(topic);
+		String topic = "stock-action";
+		createTopic(topic, 2, 2, new Properties());
+		//deleteTopic(topic);
 	}
 	
 	public static void createTopic(String topic,int partition,int repilca,Properties properties){ 
