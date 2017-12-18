@@ -35,13 +35,17 @@ public class QuatationConsumer {
 			public void onPartitionsAssigned(Collection<TopicPartition> partitions) {
 				long commitOffset = -1;
 				for(TopicPartition partition : partitions){
+					//查询偏移量
 					commitOffset = kafkaConsumer.committed(partition).offset();
+					//重置偏移量
 					kafkaConsumer.seek(partition, commitOffset);
 				}
 			}
 		});
 		while(true){
+			//轮训从各分区拉取一批数据
 			ConsumerRecords<String, String> records = kafkaConsumer.poll(1000);
+			//一批数据的数量
 			System.out.println(records.count());
 			for(ConsumerRecord<String, String> record : records){
 				System.out.println(record.offset()+"|"+record.partition()+"|"+record.key()+":"+record.value());
