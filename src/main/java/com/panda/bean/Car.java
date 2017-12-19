@@ -29,10 +29,10 @@ public class Car {
 		this.price = price;
 	}
 
-	@Override
-	public String toString() {
-		return "Car [name=" + name + ", price=" + price + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "Car [name=" + name + ", price=" + price + "]";
+//	}
 	
 	
 }
