@@ -230,12 +230,16 @@
 		    <artifactId>spring-kafka</artifactId>
 		    <version>2.1.0.RELEASE</version>
 		</dependency>
-		<!-- 
+		<dependency>
+		    <groupId>org.apache.spark</groupId>
+		    <artifactId>spark-streaming_2.11</artifactId>
+		    <version>2.2.1</version>
+		</dependency>
 		<dependency>
 		    <groupId>org.apache.spark</groupId>
 		    <artifactId>spark-streaming-kafka_2.11</artifactId>
 		    <version>1.6.3</version>
-		</dependency> -->
+		</dependency>
 		
 		<!-- <dependency>
 			<groupId>com.alibaba</groupId>
@@ -286,15 +290,15 @@
   				<skip>true</skip>
   			</configuration>
   		</plugin>
-  		<!-- <plugin>
+  		<plugin>
 			<groupId>org.apache.maven.plugins</groupId>
 			<artifactId>maven-war-plugin</artifactId>
 			<configuration>
 				<warName>ROOT</warName>
 				<encoding>UTF-8</encoding>
 			</configuration>
-			<version>3.1.0</version>
-		</plugin> -->
+			<version>3.2.0</version>
+		</plugin>
   		<!-- jetty -->
   		<plugin>
   			<groupId>org.mortbay.jetty</groupId>

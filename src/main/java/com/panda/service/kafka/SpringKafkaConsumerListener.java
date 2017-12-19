@@ -15,5 +15,5 @@ public class SpringKafkaConsumerListener implements MessageListener<String, Stri
 			logger.info("消费成功：主题：{}，分区：{}，时间：{}，内容：{}",data.topic(),data.partition(),data.timestamp(),data.value());
 		}
 	}
-
+	
 }
