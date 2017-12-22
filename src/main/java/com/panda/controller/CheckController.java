@@ -30,7 +30,7 @@ public class CheckController {
 		return view;
 	}
 	
-	@RequestMapping("hello")
+	@RequestMapping("/hello")
 	public void hello(HttpServletRequest req,HttpServletResponse resp) throws IOException{
 		logger.info("1");
 		PrintWriter write = resp.getWriter();

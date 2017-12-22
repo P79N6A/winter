@@ -21,7 +21,7 @@ public class MyServletContextListener implements ServletContextListener {
 		servletContext.setAttribute("name", "souche");
 		logger.info(servletContext.getContextPath());
 		logger.info(servletContext.getRealPath("/"));
-		new WebSocketServer(10000).start();
+		//new WebSocketServer(10000).start();
 	}
 
 	@Override

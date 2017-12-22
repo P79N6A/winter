@@ -8,7 +8,7 @@
         http://www.springframework.org/schema/context 
         http://www.springframework.org/schema/context/spring-context.xsd">
      
-	<bean id="consumerProp" class="java.util.HashMap">
+	<bean id="consumerProp" class="com.panda.service.kafka.ConsumerProp">
 		<constructor-arg>
 			<map>
 				<entry key="bootstrap.servers" value="${bootstrap.servers}"/>
@@ -19,6 +19,7 @@
 				<entry key="value.deserializer" value="${value.deserializer}"/>
 			</map>
 		</constructor-arg>
+		<property name="messageModel" value="${message.model}"/>
 	</bean>
 	
 	<bean id="consumerFactory" class="org.springframework.kafka.core.DefaultKafkaConsumerFactory">
