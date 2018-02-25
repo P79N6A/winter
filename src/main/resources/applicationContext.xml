@@ -24,6 +24,6 @@
 	</bean>
 	
 	<import resource="application-datasource.xml"/>
-	<import resource="kafka-producer.xml"/>
-	<import resource="kafka-consumer.xml"/>
+	<!-- <import resource="kafka-producer.xml"/>
+	<import resource="kafka-consumer.xml"/> -->
 </beans>

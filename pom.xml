@@ -240,7 +240,12 @@
 		    <artifactId>spark-streaming-kafka_2.11</artifactId>
 		    <version>1.6.3</version>
 		</dependency>
-		
+		<dependency>
+			<groupId>commons-httpclient</groupId>
+			 <artifactId>commons-httpclient</artifactId>
+			 <name>HttpClient</name>
+			 <version>3.1</version>
+		</dependency>
 		<!-- <dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>dubbo</artifactId>
