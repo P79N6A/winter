@@ -14,7 +14,5 @@ public class SearchFinder {
 			Search search = iterator.next();
 			search.search();
 		}
-		
-		//sss
 	}
 }
