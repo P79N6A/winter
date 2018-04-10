@@ -22,7 +22,7 @@ public class NIOServer {
     private  ByteBuffer receivebuffer = ByteBuffer.allocate(1024);
 
     private Selector selector;
-
+    
     public NIOServer(int port) throws IOException {
         // 打开服务器套接字通道
         ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();
@@ -47,8 +47,8 @@ public class NIOServer {
             Iterator<SelectionKey> iterator = selectionKeys.iterator();
             while (iterator.hasNext()) {
                 SelectionKey selectionKey = iterator.next();
-                iterator.remove();
                 handleKey(selectionKey);
+                iterator.remove();
             }
         }
     }
@@ -91,7 +91,7 @@ public class NIOServer {
             sendText="message from server--";
             //向缓冲区中输入数据
             sendbuffer.put(sendText.getBytes());
-            //将缓冲区各标志复位,因为向里面put了数据标志被改变要想从中读取数据发向服务器,就要复位
+            //将缓冲区各标志复位,因为向里面put了数据标志被改变。要想从中读取数据发向服务器,就要复位
             sendbuffer.flip();
             //输出到通道
             client.write(sendbuffer);

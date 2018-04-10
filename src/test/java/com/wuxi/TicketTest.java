@@ -38,7 +38,7 @@ public class TicketTest {
 		Map<String, String> params = new HashMap<>();
 		params.put("ArrivalCity", "shanghai");
 		params.put("DepartureCity", "wuxi");
-		params.put("DepartureDate", "2018-03-13");
+		params.put("DepartureDate", "2018-04-08");
 		params.put("TrainNumber", "D3125");
 		
 		post.addParameter("value", JsonUtil.toJson(params));

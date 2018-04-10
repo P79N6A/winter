@@ -16,15 +16,15 @@
 		http://www.springframework.org/schema/websocket/spring-websocket-4.2.xsd">
 	
 	<!-- <context:annotation-config/> -->
-	<context:component-scan base-package="com.panda.controller"/>
+	<!-- <context:component-scan base-package="com.panda.controller"/> -->
 	 
-    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    <!-- <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">
             <list>
                 <value>classpath*:*.properties</value>
             </list>
         </property>
-    </bean>
+    </bean> -->
     
     
     <bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
@@ -116,6 +116,7 @@
 	
 	<!-- websocket  -->
 	<!-- allowed-origins="*" 解决ngnix代理后ws建立出现403错误  -->
+	<!-- Registers a Spring MVC SimpleUrlHandlerMapping to map HTTP WebSocket handshake (or SockJS) requests to WebSocketHandlers -->
 	<websocket:handlers allowed-origins="*">
 		<websocket:mapping handler="actionHandler" path="/action"/>
 	</websocket:handlers>
