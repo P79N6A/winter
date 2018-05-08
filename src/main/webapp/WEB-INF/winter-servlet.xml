@@ -76,6 +76,11 @@
 		<property name="suffix" value=".ftl"/>
 		<property name="order" value="1"/>
 		<property name="contentType" value="text/html;charset=UTF-8"/>
+		<property name="exposeSpringMacroHelpers" value="true" />
+		<property name="exposeRequestAttributes" value="true" />
+		<property name="exposeSessionAttributes" value="true" />
+		<property name="requestContextAttribute" value="request" />
+		<property name="cache" value="true" />
 	</bean>
 	
 	<!-- 视图解析器，所有modelview返回自动添加前后缀 -->
@@ -94,8 +99,11 @@
 		class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
 		<property name="suffix" value=".vm"/>
 		<property name="contentType" value="text/html;charset=UTF-8"/>
-		<property name="exposeRequestAttributes" value="true"/>
-		<property name="exposeSessionAttributes" value="true"/>
+		<property name="exposeSpringMacroHelpers" value="true" />
+		<property name="exposeRequestAttributes" value="true" />
+		<property name="exposeSessionAttributes" value="true" />
+		<property name="requestContextAttribute" value="request" />
+		<property name="cache" value="true" />
 		<property name="order" value="5"/>
 	</bean>
 	
