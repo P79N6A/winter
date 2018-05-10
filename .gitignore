@@ -5,6 +5,4 @@
 target/
 logs/
 .idea/*
-
-
-winter-coming.iml
+*.iml
