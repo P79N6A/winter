@@ -1,6 +1,7 @@
 package com.wuxi;
 
 import org.apache.commons.lang3.StringUtils;
+import org.junit.Test;
 
 /**
  * @author: qingtong
@@ -12,7 +13,7 @@ public class ShardingTest {
 
     private static int MAX_DB = 64;
 
-    private static int TABLE_MOD = 8;
+    private static int TABLE_MOD = 4;
 
     private static int DB_MOD = 64;
 
@@ -34,5 +35,22 @@ public class ShardingTest {
 
         return preTable + "_" + db + table;
     }
+
+    @Test
+    public void shardingTest(){
+        sharding(255);
+
+        sharding(256);
+    }
+
+
+    private static void sharding(long id){
+        long a1 = (id / MAX_DB );
+        long a2 = (id / MAX_DB % MAX_TABLE);
+        long a3 = (id / MAX_DB % MAX_TABLE / TABLE_MOD);
+        long a4 = (id / MAX_DB % MAX_TABLE / TABLE_MOD * TABLE_MOD);
+        System.out.println(a1 + " -> " + a2 + " -> " + a3 + " -> " + a4);
+    }
+
 
 }
