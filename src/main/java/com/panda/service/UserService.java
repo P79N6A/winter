@@ -2,11 +2,14 @@ package com.panda.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.panda.bean.Car;
 import com.panda.bean.User;
 import com.panda.dao.UserMapper;
+import org.springframework.transaction.support.TransactionCallback;
+import org.springframework.transaction.support.TransactionTemplate;
 
 @Service("userService")
 public class UserService {
@@ -16,6 +19,9 @@ public class UserService {
 	
 	@Autowired
 	UserMapper userMapper;
+
+	@Autowired
+    TransactionTemplate transactionTemplate;
 	
 	@Transactional
 	public String getUser(){
@@ -41,5 +47,24 @@ public class UserService {
 	public void print(){
 		System.out.println("print");
 	}
+
+	public void call(){
+        transactionTemplate.execute(new TransactionCallback<Object>() {
+
+            @Override
+            public Object doInTransaction(TransactionStatus status) {
+                try {
+
+                }catch (Exception e){
+                    status.setRollbackOnly();
+                }
+
+                return null;
+            }
+        });
+
+
+    }
+
 	
 }
