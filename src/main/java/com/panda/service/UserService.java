@@ -45,20 +45,18 @@ public class UserService {
 	}
 	
 	public void print(){
-		System.out.println("print");
+	    System.out.println("print");
 	}
 
 	public void call(){
-        transactionTemplate.execute(new TransactionCallback<Object>() {
+
+	    //编程式事务
+        transactionTemplate.execute(new TransactionCallback<Integer>() {
 
             @Override
-            public Object doInTransaction(TransactionStatus status) {
-                try {
-
-                }catch (Exception e){
-                    status.setRollbackOnly();
-                }
-
+            public Integer doInTransaction(TransactionStatus status) {
+                //需要在事务中执行的代码
+                carService.update(new Car("benchi",1));
                 return null;
             }
         });
