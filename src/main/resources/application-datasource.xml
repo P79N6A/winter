@@ -64,4 +64,8 @@
     </aop:config> -->
     
    <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
+    
+    <bean id="transactionTemplate" class="org.springframework.transaction.support.TransactionTemplate">
+        <property name="transactionManager" ref="transactionManager" />
+    </bean>
 </beans>
