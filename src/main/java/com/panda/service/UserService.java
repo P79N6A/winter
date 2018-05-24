@@ -67,7 +67,8 @@ public class UserService {
                     //出错回滚
                     status.setRollbackOnly();
                 }
-                //必须在事务活着时获取事务状态 即要写在里面
+                //获取事务状态
+                //必须在事务活着时获取 即要写在里面
                 TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronizationAdapter() {
                     @Override
                     public void afterCompletion(int status) {
