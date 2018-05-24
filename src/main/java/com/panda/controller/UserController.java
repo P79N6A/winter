@@ -21,7 +21,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -38,6 +40,12 @@ import com.panda.dao.UserMapper;
 public class UserController implements ApplicationContextAware{
 
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+	
+	
+	@InitBinder
+	public void InitBinder(WebDataBinder binder) {
+
+	}
 	
 	@Value("${jdbc.url}")
 	private String jdbcUrl;

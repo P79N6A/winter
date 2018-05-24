@@ -47,17 +47,19 @@ public class UserService {
 	}
 	
 	public void print(){
-		System.out.println("print");
+	    System.out.println("print");
 	}
 
     /**
      * 编程式事务
      */
 	public void call(){
-        transactionTemplate.execute(new TransactionCallback<Object>() {
+
+	    //编程式事务
+        transactionTemplate.execute(new TransactionCallback<TransactionStatus>() {
 
             @Override
-            public Object doInTransaction(TransactionStatus status) {
+            public TransactionStatus doInTransaction(TransactionStatus status) {
                 try {
 //                    accFeeSpliteConfigService.updateById(config0);
 //                    accFeeSpliteConfigService.updateById(config1);
