@@ -9,6 +9,8 @@ import com.panda.bean.Car;
 import com.panda.bean.User;
 import com.panda.dao.UserMapper;
 import org.springframework.transaction.support.TransactionCallback;
+import org.springframework.transaction.support.TransactionSynchronizationAdapter;
+import org.springframework.transaction.support.TransactionSynchronizationManager;
 import org.springframework.transaction.support.TransactionTemplate;
 
 @Service("userService")
@@ -48,18 +50,30 @@ public class UserService {
 		System.out.println("print");
 	}
 
+    /**
+     * 编程式事务
+     */
 	public void call(){
         transactionTemplate.execute(new TransactionCallback<Object>() {
 
             @Override
             public Object doInTransaction(TransactionStatus status) {
                 try {
-
-                }catch (Exception e){
+//                    accFeeSpliteConfigService.updateById(config0);
+//                    accFeeSpliteConfigService.updateById(config1);
+                } catch (Exception e) {
+                    //出错回滚
                     status.setRollbackOnly();
                 }
-
-                return null;
+                //必须在事务活着时获取事务状态 即要写在里面
+                TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronizationAdapter() {
+                    @Override
+                    public void afterCompletion(int status) {
+                        super.afterCompletion(status);
+                        System.out.println("status : " + status);
+                    }
+                });
+                return status;
             }
         });
 

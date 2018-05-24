@@ -67,5 +67,7 @@
     
     <bean id="transactionTemplate" class="org.springframework.transaction.support.TransactionTemplate">
         <property name="transactionManager" ref="transactionManager" />
+        <property name="timeout" value="30"/>
+        <property name="propagationBehaviorName" value="PROPAGATION_REQUIRED"/>
     </bean>
 </beans>
