@@ -11,7 +11,7 @@
 			where name=#{name}
 	</update>
 	
-	<select id="selectPrice" resultType="String" parameterType="String">
+	<select id="selectPrice" resultType="String" parameterType="String" timeout="2">
 		select price from car 
 			where name=#{name}
 	</select>
