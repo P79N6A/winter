@@ -27,4 +27,13 @@ public class OrderController {
         return order;
     }
 
+    @RequestMapping("/query")
+    @ResponseBody
+    public Object query(String name){
+
+        LOGGER.info("name:{}",name);
+        return name;
+    }
+
+
 }
