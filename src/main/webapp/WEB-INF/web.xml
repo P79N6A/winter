@@ -32,7 +32,11 @@
 		<listener-class>com.panda.web.MyServletContextListener</listener-class>
 	</listener>
 	
-	 <!-- 解决post乱码问题的过滤器 get乱码在Tomcat的server.xml里Connector加上URIEncoding="UTF-8"-->
+	 <!-- 解决post乱码问题的过滤器,
+	    get请求uri（不包括queryString）乱码在Tomcat的server.xml里Connector加上URIEncoding="UTF-8"
+	    get的queryString乱码要在tomcat的Connector加useBodyEncodingForURI="true"
+	    或者前端对参数两次encodeURI加密后在后台一次URLdecode解密
+	    -->
 	  <filter>
 	      <filter-name>CharacterEncodingFilter</filter-name>
 	      <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
