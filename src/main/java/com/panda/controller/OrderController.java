@@ -4,13 +4,17 @@ import com.alibaba.fastjson.JSON;
 import com.panda.bean.Order;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.lang.model.element.ExecutableElement;
 import java.net.URLDecoder;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -34,17 +38,29 @@ public class OrderController {
         return order;
     }
 
+    /**
+     * createTime 两个都会注入
+     * @param name
+     * @param age
+     * @param order
+     * @param createTime
+     * @return
+     */
     @RequestMapping("/query")
     @ResponseBody
-    public Object query(String name,Integer age){
-
+    public Object query(String name,Integer age,Order order,@RequestParam @DateTimeFormat(pattern = "yyyy/MM/dd") Date createTime){
         try{
             name = URLDecoder.decode(name,"utf-8");
         }catch (Exception e){
 
         }
+        Map<String,Object> map = new HashMap<>();
+        map.put("name",name);
+        map.put("age",age);
+        map.put("createTime",createTime);
+        map.put("order",order);
         LOGGER.info("name:{}",name);
-        return name;
+        return map;
     }
 
     public static void main(String[] args) {
