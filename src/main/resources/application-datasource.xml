@@ -51,7 +51,8 @@
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
     	<property name="dataSource" ref="dataSource"></property>
     </bean>
-    
+
+    <!--xml配置声明式事务-->
    <tx:advice id="txAdvice" transaction-manager="transactionManager">
     	<tx:attributes>
     		<tx:method name="update" rollback-for="ServletException" timeout="5"/>
@@ -62,9 +63,11 @@
     	<aop:pointcut expression="execution(* com.panda.service.*Service.*(..))" id="serviceMethods"/>
     	<aop:advisor pointcut-ref="serviceMethods" advice-ref="txAdvice"/>
     </aop:config>
-    
+
+    <!--注释性声明式事务-->
    <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
-    
+
+    <!--编程式事务-->
     <bean id="transactionTemplate" class="org.springframework.transaction.support.TransactionTemplate">
         <property name="transactionManager" ref="transactionManager" />
         <property name="timeout" value="30"/>
