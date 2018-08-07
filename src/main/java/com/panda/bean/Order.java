@@ -1,5 +1,7 @@
 package com.panda.bean;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 /**
@@ -10,6 +12,7 @@ public class Order {
 
     private String order;
 
+    @DateTimeFormat(pattern = "yyyy/MM/dd")
     private Date createTime;
 
     public String getOrder() {
