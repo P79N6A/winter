@@ -1,9 +1,11 @@
 package com.panda.bean;
 
+import javax.validation.constraints.NotNull;
+
 public class Car {
 
 	private String name;
-	
+
 	private int price;
 	
 	public Car() {}
