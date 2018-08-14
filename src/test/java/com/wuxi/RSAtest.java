@@ -63,7 +63,7 @@ public class RSAtest {
 
         byte[] encodedText = RSAEncode(publicKey, plaintext.getBytes());
         String encodedStr = Base64.encodeBase64String(encodedText);
-        System.out.println("RSA长度：" + encodedStr.length());
+        System.out.println("RSA加密后报文长度：" + encodedStr.length());
         System.out.println("RSA encoded: " + encodedStr);
 
         // 解密
