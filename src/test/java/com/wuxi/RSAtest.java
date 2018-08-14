@@ -2,6 +2,7 @@ package com.wuxi;
 
 
 import org.apache.commons.codec.binary.Base64;
+import org.junit.Test;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -186,5 +187,18 @@ public class RSAtest {
         return null;
 
     }
+
+    @Test
+    public void cipherTest(){
+        try {
+            //如果找不到会报错
+            Cipher cipher = Cipher.getInstance("RSA");
+            System.out.println(cipher);
+        }catch (Exception e){
+            //ava.security.NoSuchAlgorithmException: Cannot find any provider supporting R
+            e.printStackTrace();
+        }
+    }
+
 
 }
