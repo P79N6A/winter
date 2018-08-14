@@ -1,6 +1,7 @@
 package com.wuxi;
 
-import org.apache.commons.net.util.Base64;
+
+import org.apache.commons.codec.binary.Base64;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -30,21 +31,29 @@ public class RSAtest {
     /** RSA密钥长度必须是64的倍数，在512~65536之间。默认是1024 */
     public static final int KEY_SIZE = 2048;
 
-    public static final String PLAIN_TEXT = "hello world";
 
     public static void main(String[] args) {
+        String plaintext = "hello tomorrow tomorrow tomorrow tomorrow";
+
         Map<String, byte[]> keyMap = generateKeyBytes();
+        System.out.println("公钥：" + Base64.encodeBase64String(keyMap.get(PUBLIC_KEY)).length());
+        System.out.println("私钥：" + Base64.encodeBase64String(keyMap.get(PRIVATE_KEY)).length());
 
         // 加密
         PublicKey publicKey = restorePublicKey(keyMap.get(PUBLIC_KEY));
 
-        byte[] encodedText = RSAEncode(publicKey, PLAIN_TEXT.getBytes());
-        System.out.println("RSA encoded: " + Base64.encodeBase64String(encodedText));
+        byte[] encodedText = RSAEncode(publicKey, plaintext.getBytes());
+        String encodedStr = Base64.encodeBase64String(encodedText);
+        System.out.println("RSA长度：" + encodedStr.length());
+        System.out.println("RSA encoded: " + encodedStr);
 
         // 解密
         PrivateKey privateKey = restorePrivateKey(keyMap.get(PRIVATE_KEY));
         System.out.println("RSA decoded: "
                 + RSADecode(privateKey, encodedText));
+
+        System.out.println("公钥：" + Base64.encodeBase64String(publicKey.getEncoded()));
+        System.out.println("私钥：" + Base64.encodeBase64String(privateKey.getEncoded()));
     }
 
     /**
