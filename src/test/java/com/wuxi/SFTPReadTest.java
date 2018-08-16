@@ -27,7 +27,10 @@ public class SFTPReadTest {
 			channelSftp.cd(fileDir);
 			InputStream inputStream = null;
 			try {
+				//拿到输入流
 				inputStream = channelSftp.get(fileName);
+				//拿到输出流
+				//outputStream = channelSftp.put(fileName);
 			} catch (Exception e) {
 				System.out.println("未找到文件");
 				e.printStackTrace();
