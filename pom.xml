@@ -264,6 +264,14 @@
 		    <version>2.9.0</version>
 		</dependency>
 		
+		 <!-- SFTP start -->
+        <dependency>
+            <groupId>com.jcraft</groupId>
+            <artifactId>jsch</artifactId>
+            <version>0.1.53</version>
+        </dependency>
+        <!-- SFTP end -->
+		
 		<dependency>
 		    <groupId>io.shardingsphere</groupId>
 		    <artifactId>sharding-jdbc</artifactId>
