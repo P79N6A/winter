@@ -272,12 +272,6 @@
         </dependency>
         <!-- SFTP end -->
 		
-		<dependency>
-		    <groupId>io.shardingsphere</groupId>
-		    <artifactId>sharding-jdbc</artifactId>
-		    <version>3.0.0.M2</version>
-		</dependency>
-		
 		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
 		<dependency>
 		    <groupId>org.apache.poi</groupId>
