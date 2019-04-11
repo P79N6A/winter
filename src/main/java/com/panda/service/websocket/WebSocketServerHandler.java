@@ -14,69 +14,69 @@ import org.jboss.netty.handler.codec.http.websocketx.WebSocketServerHandshakerFa
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class WebSocketServerHandler extends SimpleChannelUpstreamHandler{
+public class WebSocketServerHandler extends SimpleChannelUpstreamHandler {
 
-	private static final Logger logger = LoggerFactory.getLogger(WebSocketServerHandler.class);
-	private static final String WEBSOCKET_PATH = "/note";
-	private WebSocketServerHandshaker handshaker;
-	
-	/**
-	 * 当 ChannelHandler 被添加到 ChannelPipeline 时，它将会被分配一个 ChannelHandlerContext，它代表了 ChannelHandler 和 ChannelPipeline 之间的绑定
-	 */
-	@Override
-	public void messageReceived(ChannelHandlerContext ctx, MessageEvent e) throws Exception {
-		Object message = e.getMessage();
-		String receivedMessage = message.toString();
-		logger.info("recieve message from channel:" + receivedMessage);
-		if(message instanceof HttpRequest){
-			logger.info("http 请求");
-			handleHttpRequest(ctx, (HttpRequest)message);
-		}else if(message instanceof WebSocketFrame){
-			logger.info("ws 请求");
-			if(message instanceof CloseWebSocketFrame){
-				handshaker.close(ctx.getChannel(), (CloseWebSocketFrame)message);
-				WebSocketServer.ctx = null;
-			}else{
-				ctx.getChannel().write(new TextWebSocketFrame("收到！"));
-			}
-			
-		}
-	}
-	
-	private void handleHttpRequest(ChannelHandlerContext ctx,HttpRequest req){
-		WebSocketServerHandshakerFactory wsfactory = new WebSocketServerHandshakerFactory(getWebSocketLocation(req), null, false);
-		handshaker = wsfactory.newHandshaker(req);
-		if(handshaker == null){
-			wsfactory.sendUnsupportedWebSocketVersionResponse(ctx.getChannel());
-		}else {
-			handshaker.handshake(ctx.getChannel(), req).addListener(WebSocketServerHandshaker.HANDSHAKE_LISTENER);
-		}
-		WebSocketServer.ctx = ctx;
-	}
-	
-	@Override
-	public void exceptionCaught(ChannelHandlerContext ctx, ExceptionEvent e) throws Exception {
-		e.getCause().printStackTrace();
-		ctx.getChannel().close();
-		WebSocketServer.ctx = null;
-	}
+    private static final Logger logger = LoggerFactory.getLogger(WebSocketServerHandler.class);
+    private static final String WEBSOCKET_PATH = "/note";
+    private WebSocketServerHandshaker handshaker;
 
-	@Override
-	public void channelOpen(ChannelHandlerContext ctx, ChannelStateEvent e) throws Exception {
-		WebSocketGlobal.ctxs.add(ctx.getChannel());
-		logger.info("建立连接：{}",ctx.getChannel());
-	}
+    /**
+     * 当 ChannelHandler 被添加到 ChannelPipeline 时，它将会被分配一个 ChannelHandlerContext，它代表了 ChannelHandler 和 ChannelPipeline 之间的绑定
+     */
+    @Override
+    public void messageReceived(ChannelHandlerContext ctx, MessageEvent e) throws Exception {
+        Object message = e.getMessage();
+        String receivedMessage = message.toString();
+        logger.info("recieve message from channel:" + receivedMessage);
+        if (message instanceof HttpRequest) {
+            logger.info("http 请求");
+            handleHttpRequest(ctx, (HttpRequest) message);
+        } else if (message instanceof WebSocketFrame) {
+            logger.info("ws 请求");
+            if (message instanceof CloseWebSocketFrame) {
+                handshaker.close(ctx.getChannel(), (CloseWebSocketFrame) message);
+                WebSocketServer.ctx = null;
+            } else {
+                ctx.getChannel().write(new TextWebSocketFrame("收到！"));
+            }
 
-	@Override
-	public void channelClosed(ChannelHandlerContext ctx, ChannelStateEvent e) throws Exception {
-		WebSocketGlobal.ctxs.remove(ctx.getChannel());
-		logger.info("断开连接：{}",ctx.getChannel());
-	}
+        }
+    }
 
-	private String getWebSocketLocation(HttpRequest req){
-		String url =  "ws://" + req.headers().get("host") + WEBSOCKET_PATH;
-		logger.info("ws 地址：{}",url);
-		return url;
-	}
-	
+    private void handleHttpRequest(ChannelHandlerContext ctx, HttpRequest req) {
+        WebSocketServerHandshakerFactory wsfactory = new WebSocketServerHandshakerFactory(getWebSocketLocation(req), null, false);
+        handshaker = wsfactory.newHandshaker(req);
+        if (handshaker == null) {
+            wsfactory.sendUnsupportedWebSocketVersionResponse(ctx.getChannel());
+        } else {
+            handshaker.handshake(ctx.getChannel(), req).addListener(WebSocketServerHandshaker.HANDSHAKE_LISTENER);
+        }
+        WebSocketServer.ctx = ctx;
+    }
+
+    @Override
+    public void exceptionCaught(ChannelHandlerContext ctx, ExceptionEvent e) throws Exception {
+        e.getCause().printStackTrace();
+        ctx.getChannel().close();
+        WebSocketServer.ctx = null;
+    }
+
+    @Override
+    public void channelOpen(ChannelHandlerContext ctx, ChannelStateEvent e) throws Exception {
+        WebSocketGlobal.ctxs.add(ctx.getChannel());
+        logger.info("建立连接：{}", ctx.getChannel());
+    }
+
+    @Override
+    public void channelClosed(ChannelHandlerContext ctx, ChannelStateEvent e) throws Exception {
+        WebSocketGlobal.ctxs.remove(ctx.getChannel());
+        logger.info("断开连接：{}", ctx.getChannel());
+    }
+
+    private String getWebSocketLocation(HttpRequest req) {
+        String url = "ws://" + req.headers().get("host") + WEBSOCKET_PATH;
+        logger.info("ws 地址：{}", url);
+        return url;
+    }
+
 }

@@ -4,37 +4,38 @@ import javax.validation.constraints.NotNull;
 
 public class Car {
 
-	private String name;
+    private String name;
 
-	private int price;
-	
-	public Car() {}
-	
-	public Car(String name,int price) {
-		this.name = name;
-		this.price = price;
-	}
+    private int price;
 
-	public String getName() {
-		return name;
-	}
+    public Car() {
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public Car(String name, int price) {
+        this.name = name;
+        this.price = price;
+    }
 
-	public int getPrice() {
-		return price;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setPrice(int price) {
-		this.price = price;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
 
 //	@Override
 //	public String toString() {
 //		return "Car [name=" + name + ", price=" + price + "]";
 //	}
-	
-	
+
+
 }

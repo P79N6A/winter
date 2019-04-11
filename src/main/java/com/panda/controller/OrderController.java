@@ -28,7 +28,7 @@ public class OrderController {
     private static final Logger LOGGER = LoggerFactory.getLogger(OrderController.class);
 
     @RequestMapping("/add")
-    public Object add(Order order){
+    public Object add(Order order) {
 
         //当请求方法是post且时间格式为"2018/07/9 13:01:48" 或get方法http://localhost:8080/order/add?createTime=2018/09/09（encodeURI）时String可以转换Date
         //原理：调用的 ObjectToObjectConverter,他的convert方法最后调的ctor.newInstance(source)，而Date恰好有个new Date("2018/09/09")的构造器，2018-09-09不行
@@ -38,7 +38,7 @@ public class OrderController {
     }
 
     @PostMapping("/save")
-    public Object save(@RequestBody List<Order> orders) throws Exception{
+    public Object save(@RequestBody List<Order> orders) throws Exception {
         //LOGGER.info(order);
 //        List<Order> orders = null;
 //        try{
@@ -53,6 +53,7 @@ public class OrderController {
 
     /**
      * createTime 两个都会注入
+     *
      * @param name
      * @param age
      * @param order
@@ -60,18 +61,18 @@ public class OrderController {
      * @return
      */
     @RequestMapping("/query")
-    public Object query(String name,Integer age,Order order,@RequestParam @DateTimeFormat(pattern = "yyyy/MM/dd") Date createTime){
-        try{
-            name = URLDecoder.decode(name,"utf-8");
-        }catch (Exception e){
+    public Object query(String name, Integer age, Order order, @RequestParam @DateTimeFormat(pattern = "yyyy/MM/dd") Date createTime) {
+        try {
+            name = URLDecoder.decode(name, "utf-8");
+        } catch (Exception e) {
 
         }
-        Map<String,Object> map = new HashMap<>();
-        map.put("name",name);
-        map.put("age",age);
-        map.put("createTime",createTime);
-        map.put("order",order);
-        LOGGER.info("name:{}",name);
+        Map<String, Object> map = new HashMap<>();
+        map.put("name", name);
+        map.put("age", age);
+        map.put("createTime", createTime);
+        map.put("order", order);
+        LOGGER.info("name:{}", name);
         return map;
     }
 

@@ -37,107 +37,107 @@ import com.panda.dao.UserMapper;
 
 @Controller
 @RequestMapping("user")
-public class UserController implements ApplicationContextAware{
+public class UserController implements ApplicationContextAware {
 
-	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
-	
-	
-	@InitBinder
-	public void InitBinder(WebDataBinder binder) {
+    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
-	}
-	
-	@Value("${jdbc.url}")
-	private String jdbcUrl;
-	@Autowired
-	UserMapper userMapper;
-	
-	ApplicationContext ac;
-	
-	@RequestMapping("/show")
-	public ModelAndView show(){
-		ModelAndView view = new ModelAndView("show");
-		List<String> userList = new ArrayList<>();
-		userList.add("李磊");
-		userList.add("李白");
-		view.addObject("users", userList);
-		return view;
-	}
-	
-	@RequestMapping(value="/addUser",method=RequestMethod.POST,params={"name","age"})
-	public ModelAndView addUser(User user,Model model,HttpServletRequest request, @ModelAttribute("name") String name,BindingResult result,
-			@CookieValue("JSESSIONID")String cookie,@RequestBody String body,@RequestHeader Map<String, String> header){
-		logger.info(header.toString());
-		logger.info(cookie);
-		logger.info(body);
+
+    @InitBinder
+    public void InitBinder(WebDataBinder binder) {
+
+    }
+
+    @Value("${jdbc.url}")
+    private String jdbcUrl;
+    @Autowired
+    UserMapper userMapper;
+
+    ApplicationContext ac;
+
+    @RequestMapping("/show")
+    public ModelAndView show() {
+        ModelAndView view = new ModelAndView("show");
+        List<String> userList = new ArrayList<>();
+        userList.add("李磊");
+        userList.add("李白");
+        view.addObject("users", userList);
+        return view;
+    }
+
+    @RequestMapping(value = "/addUser", method = RequestMethod.POST, params = {"name", "age"})
+    public ModelAndView addUser(User user, Model model, HttpServletRequest request, @ModelAttribute("name") String name, BindingResult result,
+                                @CookieValue("JSESSIONID") String cookie, @RequestBody String body, @RequestHeader Map<String, String> header) {
+        logger.info(header.toString());
+        logger.info(cookie);
+        logger.info(body);
 //		if(!StringUtils.isEmpty(name)){
 //			throw new NullPointerException();
 //		}
-		request.setAttribute("nn", "aa");
-		//getUser会在请求处理前执行，并将值赋给入参，然后再根据http请求信息对user覆盖，得到整合版的user
-		logger.info(user.getName());
-		logger.info(model.asMap().get("user").toString());
-		logger.info(name);
+        request.setAttribute("nn", "aa");
+        //getUser会在请求处理前执行，并将值赋给入参，然后再根据http请求信息对user覆盖，得到整合版的user
+        logger.info(user.getName());
+        logger.info(model.asMap().get("user").toString());
+        logger.info(name);
 //		ModelAndView view = new ModelAndView("redirect:/user/register");
 //		ModelAndView view = new ModelAndView("forward:/user/register");		
-		ModelAndView view = new ModelAndView("createSuccess");
+        ModelAndView view = new ModelAndView("createSuccess");
 //		view.addObject(user);
-		return view;
-	}
-	
-	@ModelAttribute("user")
-	public User getUser(){
-		logger.info("bb");
-		User user = new User();
-		user.setName("bb");
-		user.setAge(3);
-		return user;
-	}
-	
-	@RequestMapping(value="/updateUser",produces={"application/toString","application/json","application/xml"})
-	@ResponseBody
-	public User updateUser(User user){
-		return user;
-	}
-	
-	@RequestMapping("register")
-	public String register(){
-		return "addUser";
-	}
-	
-	@RequestMapping("update")
-	public String update(){
-		return "updateUser";
-	}
-	
-	@RequestMapping("setting")
-	public String setting(){
-		return "setting";
-	}
-	
-	@RequestMapping("/property")
-	@ResponseBody
-	public byte[] property() throws IOException{
-		Resource resource = ac.getResource("img/success.jpg");
-		return FileCopyUtils.copyToByteArray(resource.getInputStream());
-	}
-	
-	@RequestMapping("/down")
-	public void down(HttpServletResponse response) throws IOException{
-		//Resource resource = ac.getResource("img/success.jpg");
-		Resource resource = ac.getResource("file:/Users/dasouche/Downloads/Spring源码深度解析.pdf");
-		//attachment --- 作为附件下载
-	    //inline --- 在线打开
-		//response.setHeader("Content-Disposition", "attachment; filename=" + new String(resource.getFilename().getBytes("utf-8"),"ISO-8859-1"));
-		
-		OutputStream outputStream = response.getOutputStream();
-		outputStream.write(FileCopyUtils.copyToByteArray(resource.getInputStream()));
-		outputStream.flush();
-		outputStream.close();
-	}
+        return view;
+    }
 
-	@Override
-	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-		ac = applicationContext;
-	}
+    @ModelAttribute("user")
+    public User getUser() {
+        logger.info("bb");
+        User user = new User();
+        user.setName("bb");
+        user.setAge(3);
+        return user;
+    }
+
+    @RequestMapping(value = "/updateUser", produces = {"application/toString", "application/json", "application/xml"})
+    @ResponseBody
+    public User updateUser(User user) {
+        return user;
+    }
+
+    @RequestMapping("register")
+    public String register() {
+        return "addUser";
+    }
+
+    @RequestMapping("update")
+    public String update() {
+        return "updateUser";
+    }
+
+    @RequestMapping("setting")
+    public String setting() {
+        return "setting";
+    }
+
+    @RequestMapping("/property")
+    @ResponseBody
+    public byte[] property() throws IOException {
+        Resource resource = ac.getResource("img/success.jpg");
+        return FileCopyUtils.copyToByteArray(resource.getInputStream());
+    }
+
+    @RequestMapping("/down")
+    public void down(HttpServletResponse response) throws IOException {
+        //Resource resource = ac.getResource("img/success.jpg");
+        Resource resource = ac.getResource("file:/Users/dasouche/Downloads/Spring源码深度解析.pdf");
+        //attachment --- 作为附件下载
+        //inline --- 在线打开
+        //response.setHeader("Content-Disposition", "attachment; filename=" + new String(resource.getFilename().getBytes("utf-8"),"ISO-8859-1"));
+
+        OutputStream outputStream = response.getOutputStream();
+        outputStream.write(FileCopyUtils.copyToByteArray(resource.getInputStream()));
+        outputStream.flush();
+        outputStream.close();
+    }
+
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        ac = applicationContext;
+    }
 }

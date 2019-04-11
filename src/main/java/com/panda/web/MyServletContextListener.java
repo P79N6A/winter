@@ -11,22 +11,22 @@ import com.panda.service.websocket.WebSocketServer;
 
 public class MyServletContextListener implements ServletContextListener {
 
-	private static final Logger logger = LoggerFactory.getLogger(MyServletContextListener.class);
-	
-	private ServletContext servletContext;
-	
-	@Override
-	public void contextInitialized(ServletContextEvent sce) {
-		servletContext = sce.getServletContext();
-		servletContext.setAttribute("name", "souche");
-		logger.info(servletContext.getContextPath());
-		logger.info(servletContext.getRealPath("/"));
-		//new WebSocketServer(10000).start();
-	}
+    private static final Logger logger = LoggerFactory.getLogger(MyServletContextListener.class);
 
-	@Override
-	public void contextDestroyed(ServletContextEvent sce) {
-		servletContext = null;
-	}
+    private ServletContext servletContext;
+
+    @Override
+    public void contextInitialized(ServletContextEvent sce) {
+        servletContext = sce.getServletContext();
+        servletContext.setAttribute("name", "souche");
+        logger.info(servletContext.getContextPath());
+        logger.info(servletContext.getRealPath("/"));
+        //new WebSocketServer(10000).start();
+    }
+
+    @Override
+    public void contextDestroyed(ServletContextEvent sce) {
+        servletContext = null;
+    }
 
 }

@@ -1,10 +1,10 @@
 package com.panda.spi;
 
-public class DataBaseSearch implements Search{
+public class DataBaseSearch implements Search {
 
-	@Override
-	public void search() {
-		System.out.println("数据库搜索");
-	}
+    @Override
+    public void search() {
+        System.out.println("数据库搜索");
+    }
 
 }

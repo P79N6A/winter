@@ -18,36 +18,38 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- *
- *
  * Java加密的常用的加密算法类型有三种
- *
+ * <p>
  * 1单向加密：也就是不可逆的加密，例如MD5,SHA,HMAC
- *
+ * <p>
  * 2对称加密：也就是加密方和解密方利用同一个秘钥对数据进行加密和解密，例如DES，PBE等等
- *
+ * <p>
  * 3非对称加密：非对称加密分为公钥和秘钥，二者是非对称的，例如用私钥加密的内容需要使用公钥来解密，使用公钥加密的内容需要用私钥来解密，DSA，RSA...
- *
+ * <p>
  * 而keyGenerator,KeyPairGenerator,SecretKeyFactory的三种使用方法刚好和这三种加密算法类型对上
- *
+ * <p>
  * keyGenerator：秘钥生成器，也就是更具算法类型随机生成一个秘钥，例如HMAC，所以这个大部分用在非可逆的算法中
- *
+ * <p>
  * SecretKeyFactory：秘密秘钥工厂，言外之意就是需要根据一个秘密（password）去生成一个秘钥,例如DES，PBE，所以大部分使用在对称加密中
- *
+ * <p>
  * KeyPairGenerator:秘钥对生成器，也就是可以生成一对秘钥，也就是公钥和私钥，所以大部分使用在非对称加密中
- * 
+ *
  * @author: 青铜
  * @create: 2018-08-14
  **/
 public class RSAtest {
 
     public static final String KEY_ALGORITHM = "RSA";
-    /** 貌似默认是RSA/NONE/PKCS1Padding，未验证 */
+    /**
+     * 貌似默认是RSA/NONE/PKCS1Padding，未验证
+     */
     public static final String CIPHER_ALGORITHM = "RSA/ECB/PKCS1Padding";
     public static final String PUBLIC_KEY = "publicKey";
     public static final String PRIVATE_KEY = "privateKey";
 
-    /** RSA密钥长度必须是64的倍数，在512~65536之间。默认是1024 */
+    /**
+     * RSA密钥长度必须是64的倍数，在512~65536之间。默认是1024
+     */
     public static final int KEY_SIZE = 2048;
 
 
@@ -189,12 +191,12 @@ public class RSAtest {
     }
 
     @Test
-    public void cipherTest(){
+    public void cipherTest() {
         try {
             //如果找不到会报错
             Cipher cipher = Cipher.getInstance("RSA");
             System.out.println(cipher);
-        }catch (Exception e){
+        } catch (Exception e) {
             //ava.security.NoSuchAlgorithmException: Cannot find any provider supporting R
             e.printStackTrace();
         }

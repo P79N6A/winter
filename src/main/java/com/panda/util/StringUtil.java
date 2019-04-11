@@ -8,9 +8,9 @@ import java.util.regex.PatternSyntaxException;
 
 import org.apache.commons.lang.StringUtils;
 
-public class StringUtil extends StringUtils{
+public class StringUtil extends StringUtils {
 
-	private final static String regEx = "[`~!@#$%^&*()+=|{}':;',\\[\\].<>/?~！@#￥%……&*（）——+|{}【】‘；：”“’。，、？a-zA-Z\\u4e00-\\u9fa5-_]";
+    private final static String regEx = "[`~!@#$%^&*()+=|{}':;',\\[\\].<>/?~！@#￥%……&*（）——+|{}【】‘；：”“’。，、？a-zA-Z\\u4e00-\\u9fa5-_]";
 
     private final static String PLUS86 = "+86";
 
@@ -100,9 +100,9 @@ public class StringUtil extends StringUtils{
             String[] newArr = null;
             for (String string : arr) {
                 newArr = string.split("=");
-                if (newArr.length == 1){
+                if (newArr.length == 1) {
                     map.put(newArr[0], "");
-                }else{
+                } else {
                     map.put(newArr[0], newArr[1]);
                 }
 
@@ -110,17 +110,17 @@ public class StringUtil extends StringUtils{
         }
         return map;
     }
-    
-	/**
-	 * 功能：<br/>
-	 * Object 2 String
-	 * 
-	 * @param obj
-	 * @return
-	 */
-	public static String getString(Object obj) {
-		return obj == null ? null : obj.toString();
-	}
+
+    /**
+     * 功能：<br/>
+     * Object 2 String
+     *
+     * @param obj
+     * @return
+     */
+    public static String getString(Object obj) {
+        return obj == null ? null : obj.toString();
+    }
 
     public static void main(String[] args) {
         System.out.println(toLowerCaseFirstOne("Hello"));
@@ -128,18 +128,19 @@ public class StringUtil extends StringUtils{
         System.out.println(convertQuotation("say:\"hello1\",\"hello2\",\"hello3\",\"hello4\""));
 
         String s = "*adCVs*34_a _09_b5*[/435^*&城池()^$$&*).{}+.|.)%%*(*.中国}34{45[]12.fd'*&999下面是中文的字符￥……{}【】。，；’“‘”？";
-        System.out.println("原始字符串="+s);
-        System.out.println("修改后字符串="+StringUtils.deleteWhitespace(StringFilter(s)));
+        System.out.println("原始字符串=" + s);
+        System.out.println("修改后字符串=" + StringUtils.deleteWhitespace(StringFilter(s)));
     }
 
     /**
      * 过滤特殊字符、字母、汉字、下划线(只允许数字)
+     *
      * @param str
      * @return
      * @throws PatternSyntaxException
      */
     public static String StringFilter(String str) throws PatternSyntaxException {
-        if(StringUtil.isBlank(str)){
+        if (StringUtil.isBlank(str)) {
             return str;
         }
         Pattern p = Pattern.compile(regEx);
@@ -149,21 +150,22 @@ public class StringUtil extends StringUtils{
 
     /**
      * 手机号特殊字符、字母、汉字、下划线等过滤
+     *
      * @param number
      * @return
      */
-    public static String phoneNumberFilter(String number){
+    public static String phoneNumberFilter(String number) {
         String newNumber = StringUtils.deleteWhitespace(number);
-        if(StringUtil.isBlank(newNumber)){
+        if (StringUtil.isBlank(newNumber)) {
             return newNumber;
         }
-        if(newNumber.startsWith(PLUS86)){
+        if (newNumber.startsWith(PLUS86)) {
             newNumber = newNumber.replace(PLUS86, "");
             newNumber = StringUtils.deleteWhitespace(newNumber);
         }
-        try{
+        try {
             newNumber = StringFilter(newNumber);
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return StringUtils.deleteWhitespace(newNumber);

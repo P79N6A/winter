@@ -8,14 +8,14 @@ import org.springframework.web.client.RestTemplate;
 
 public class RestTemplateTest {
 
-	
-	@Test
-	public void send(){
-		String url = "http://marketing_manage.sqaproxy.souche.com/data/pc/synchronous/syncmanageaction/countTotalData.json?store=000012&token=91509677691455643";
-		RestTemplate restTemplate = new RestTemplate();
-		Map<String, Object> result = restTemplate.getForObject(url, Map.class);
-		
-		AsyncRestTemplate template = new AsyncRestTemplate();
-		System.out.println(result);
-	}
+
+    @Test
+    public void send() {
+        String url = "http://marketing_manage.sqaproxy.souche.com/data/pc/synchronous/syncmanageaction/countTotalData.json?store=000012&token=91509677691455643";
+        RestTemplate restTemplate = new RestTemplate();
+        Map<String, Object> result = restTemplate.getForObject(url, Map.class);
+
+        AsyncRestTemplate template = new AsyncRestTemplate();
+        System.out.println(result);
+    }
 }

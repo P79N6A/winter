@@ -13,14 +13,14 @@ public class OrderDelay implements Delayed {
 
     private long timeout;
 
-    public OrderDelay(String orderId,long timeout){
+    public OrderDelay(String orderId, long timeout) {
         this.orderId = orderId;
         this.timeout = timeout + System.nanoTime();
     }
 
     @Override
     public long getDelay(TimeUnit unit) {
-        return unit.convert((timeout - System.nanoTime()),TimeUnit.NANOSECONDS);
+        return unit.convert((timeout - System.nanoTime()), TimeUnit.NANOSECONDS);
     }
 
     @Override

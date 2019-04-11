@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:p="http://www.springframework.org/schema/p"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:aop="http://www.springframework.org/schema/aop"
-	xmlns:tx="http://www.springframework.org/schema/tx"
-	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
-	xsi:schemaLocation="
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xsi:schemaLocation="
 		http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
 		http://www.springframework.org/schema/context
@@ -15,61 +15,61 @@
 		http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
 		http://www.springframework.org/schema/aop
 		http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
-    
+
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"
-		p:username="${jdbc.user}"
-		p:password="${jdbc.password}"
-		p:testOnBorrow="false"
-		p:testWhileIdle="true"
-		p:timeBetweenEvictionRunsMillis="7200000">
-		<property name="validationQuery" value="select 1"></property>
-		<property name="driverClassName" value="${jdbc.driver}"/>
-		<property name="url" value="${jdbc.url}"></property>
-	</bean>
-	
-    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" >
-        <property name="typeAliasesPackage" value="com.panda.bean" />
-		<property name="mapperLocations" >
-			<list>
-				<value>classpath*:mappers/*.xml</value>
-				<value>classpath*:mappers/**/*.xml</value>
-			</list>
-		</property>
-		<property name="dataSource" ref="dataSource" />
-	</bean>
-	
-	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
-		<constructor-arg index="0" ref="sqlSessionFactory" />
-	</bean>
-	
-	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.panda.dao" />
+          p:username="${jdbc.user}"
+          p:password="${jdbc.password}"
+          p:testOnBorrow="false"
+          p:testWhileIdle="true"
+          p:timeBetweenEvictionRunsMillis="7200000">
+        <property name="validationQuery" value="select 1"></property>
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc.url}"></property>
+    </bean>
+
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="typeAliasesPackage" value="com.panda.bean"/>
+        <property name="mapperLocations">
+            <list>
+                <value>classpath*:mappers/*.xml</value>
+                <value>classpath*:mappers/**/*.xml</value>
+            </list>
+        </property>
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg index="0" ref="sqlSessionFactory"/>
+    </bean>
+
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.panda.dao"/>
         <!-- 配置多数据源的时候，会有多个sqlSessionFactory，需要通过该属性来指定哪一个sqlSessionFactory -->
         <!-- <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/> -->
     </bean>
-    
+
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-    	<property name="dataSource" ref="dataSource"></property>
+        <property name="dataSource" ref="dataSource"></property>
     </bean>
 
     <!--xml配置声明式事务-->
-   <tx:advice id="txAdvice" transaction-manager="transactionManager">
-    	<tx:attributes>
-    		<tx:method name="update" rollback-for="ServletException" timeout="5"/>
-    	</tx:attributes>
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="update" rollback-for="ServletException" timeout="5"/>
+        </tx:attributes>
     </tx:advice>
-    
+
     <aop:config>
-    	<aop:pointcut expression="execution(* com.panda.service.*Service.*(..))" id="serviceMethods"/>
-    	<aop:advisor pointcut-ref="serviceMethods" advice-ref="txAdvice"/>
+        <aop:pointcut expression="execution(* com.panda.service.*Service.*(..))" id="serviceMethods"/>
+        <aop:advisor pointcut-ref="serviceMethods" advice-ref="txAdvice"/>
     </aop:config>
 
     <!--注释性声明式事务-->
-   <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
+    <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
 
     <!--编程式事务-->
     <bean id="transactionTemplate" class="org.springframework.transaction.support.TransactionTemplate">
-        <property name="transactionManager" ref="transactionManager" />
+        <property name="transactionManager" ref="transactionManager"/>
         <property name="timeout" value="30"/>
         <property name="propagationBehaviorName" value="PROPAGATION_REQUIRED"/>
     </bean>

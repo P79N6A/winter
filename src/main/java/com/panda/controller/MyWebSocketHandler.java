@@ -9,23 +9,23 @@ import org.springframework.web.socket.handler.AbstractWebSocketHandler;
 
 public class MyWebSocketHandler extends AbstractWebSocketHandler {
 
-	private static final Logger logger = LoggerFactory.getLogger(MyWebSocketHandler.class);
-	
-	@Override
-	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-		logger.info("websocket断开连接");
-	}
+    private static final Logger logger = LoggerFactory.getLogger(MyWebSocketHandler.class);
 
-	@Override
-	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-		logger.info("websocket建立连接");
-	}
+    @Override
+    public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
+        logger.info("websocket断开连接");
+    }
 
-	@Override
-	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-		logger.info("收到信息：" + message.getPayload());
-		session.sendMessage(new TextMessage("行动！"));
-	}
+    @Override
+    public void afterConnectionEstablished(WebSocketSession session) throws Exception {
+        logger.info("websocket建立连接");
+    }
 
-	
+    @Override
+    protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
+        logger.info("收到信息：" + message.getPayload());
+        session.sendMessage(new TextMessage("行动！"));
+    }
+
+
 }

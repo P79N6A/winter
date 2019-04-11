@@ -14,9 +14,9 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 
 public class NettyServer {
 
-	public void bind(int port){
+    public void bind(int port) {
         //创建EventLoopGroup
-		//eventLoopGroup为Netty的reactor线程池，它实际上就是eventLoop的容器，而eventLoop为Netty的核心抽象类，它的主要职责是处理所有注册到本线程多路复用器selector上的channel。
+        //eventLoopGroup为Netty的reactor线程池，它实际上就是eventLoop的容器，而eventLoop为Netty的核心抽象类，它的主要职责是处理所有注册到本线程多路复用器selector上的channel。
         EventLoopGroup bossGroup = new NioEventLoopGroup();        //创建BOSS线程组 用于服务端接受客户端的连接
         EventLoopGroup workerGroup = new NioEventLoopGroup();      //创建WORK线程组 用于进行SocketChannel的网络读写
 
@@ -34,7 +34,7 @@ public class NettyServer {
                     //设置的handler是服务端nioServerSocketChannel的
                     .handler(new LoggingServerHandler())
                     //设置的handler是属于每一个新建的nioSocketChannel的
-                    .childHandler(new ChannelInitializer(){
+                    .childHandler(new ChannelInitializer() {
                         @Override
                         protected void initChannel(Channel ch) throws Exception {
                             //do something
@@ -55,7 +55,7 @@ public class NettyServer {
         }
     }
 
-    private class LoggingServerHandler extends ChannelInboundHandlerAdapter{
+    private class LoggingServerHandler extends ChannelInboundHandlerAdapter {
         @Override
         public void channelActive(ChannelHandlerContext ctx) throws Exception {
             System.out.println("loggin-channelActive");
@@ -72,7 +72,7 @@ public class NettyServer {
         }
     }
 
-    public static void main(String[] args){
-            new NettyServer().bind(8899);
+    public static void main(String[] args) {
+        new NettyServer().bind(8899);
     }
 }

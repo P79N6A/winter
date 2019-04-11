@@ -14,7 +14,7 @@ import com.jcraft.jsch.Session;
 
 public class SFTPUtils {
 
-	/**
+    /**
      * sftp免密码登录
      *
      * @param server
@@ -133,5 +133,5 @@ public class SFTPUtils {
             sftp.disconnect();
         }
     }
-	
+
 }

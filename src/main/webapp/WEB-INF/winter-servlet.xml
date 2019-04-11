@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
-	xmlns:context="http://www.springframework.org/schema/context" xmlns:aop="http://www.springframework.org/schema/aop" 
-	xmlns:websocket="http://www.springframework.org/schema/websocket"
-	xsi:schemaLocation="
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:websocket="http://www.springframework.org/schema/websocket"
+       xsi:schemaLocation="
         http://www.springframework.org/schema/beans 
         http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
         http://www.springframework.org/schema/mvc
@@ -14,10 +15,10 @@
 		http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
 		http://www.springframework.org/schema/websocket
 		http://www.springframework.org/schema/websocket/spring-websocket-4.2.xsd">
-	
-	<!-- <context:annotation-config/> -->
-	<context:component-scan base-package="com.panda.controller"/>
-	 
+
+    <!-- <context:annotation-config/> -->
+    <context:component-scan base-package="com.panda.controller"/>
+
     <!-- <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">
             <list>
@@ -25,107 +26,107 @@
             </list>
         </property>
     </bean> -->
-    
-    
+
+
     <bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
-    	<!-- 生成一个SimpleUrlHandlerMapping对象，注册urlMap: {/show=urlController} -->
-    	<property name="urlMap">
-    		<map>
-    		 <entry key="/show" value-ref="urlController"></entry>
-    		</map>
-    	</property>
+        <!-- 生成一个SimpleUrlHandlerMapping对象，注册urlMap: {/show=urlController} -->
+        <property name="urlMap">
+            <map>
+                <entry key="/show" value-ref="urlController"></entry>
+            </map>
+        </property>
     </bean>
     <bean id="urlController" class="com.panda.controller.UrlController"></bean>
-    
+
     <!-- 静态资源处理器 由SimpleUrlHandlerMapping找到处理的handler-->
-	<!-- 新生成一个SimpleUrlHandlerMapping对象，注册urlMap: {/**=DefaultServletHttpRequestHandler} -->
-	<mvc:default-servlet-handler/>
-	<!-- 生成另一个SimpleUrlHandlerMapping对象。注册urlMap： {/img/**=ResourceHttpRequestHandler} -->
-	<mvc:resources  mapping="/img/**" location="/img/"/>
-	
+    <!-- 新生成一个SimpleUrlHandlerMapping对象，注册urlMap: {/**=DefaultServletHttpRequestHandler} -->
+    <mvc:default-servlet-handler/>
+    <!-- 生成另一个SimpleUrlHandlerMapping对象。注册urlMap： {/img/**=ResourceHttpRequestHandler} -->
+    <mvc:resources mapping="/img/**" location="/img/"/>
+
     <!-- AnnotationDrivenBeanDefinitionParser -->
-	<mvc:annotation-driven >
-		<!-- 添加自定义converter(默认7个仍在) -->
-		<mvc:message-converters>
-			<bean class="com.panda.web.ToStringHttpMessageConverter"></bean>
-		</mvc:message-converters>
-	</mvc:annotation-driven>
-	<mvc:interceptors>
-		<mvc:interceptor>
-			<mvc:mapping path="/**"/>
-			<bean class="com.panda.interceptor.MyInterceptor"/>
-		</mvc:interceptor>
-		<!-- <mvc:interceptor>
-			<mvc:mapping path="/**"/>
-			<bean class="com.panda.interceptor.MyInterceptor2"/>
-		</mvc:interceptor> -->
-	</mvc:interceptors>
-	
-	<bean id="freeMarkerConfigurer" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
-		<property name="templateLoaderPaths" value="WEB-INF/freemarker"/>
-		<property name="defaultEncoding" value="UTF-8"/>
-		<property name="freemarkerSettings">
-			<props>
-				<!-- 将值为null的属性对象转化为空字符串，而不是抛出异常 -->
-				<prop key="classic_compatible">true</prop>
-			</props>
-		</property>
-	</bean>
-	<bean id="FreeMarkerViewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
-		<property name="suffix" value=".ftl"/>
-		<property name="order" value="1"/>
-		<property name="contentType" value="text/html;charset=UTF-8"/>
-		<property name="exposeSpringMacroHelpers" value="true" />
-		<property name="exposeRequestAttributes" value="true" />
-		<property name="exposeSessionAttributes" value="true" />
-		<property name="requestContextAttribute" value="request" />
-		<property name="cache" value="true" />
-	</bean>
-	
-	<!-- 视图解析器，所有modelview返回自动添加前后缀 -->
-	<bean id="velocityConfigurer"
-		class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
-		<property name="resourceLoaderPath" value="WEB-INF/velocity"/>
-		<property name="velocityProperties">
-			<props>
-				<prop key="input.encoding">UTF-8</prop>
-				<prop key="output.encoding">UTF-8</prop>
-				<prop key="contentType">text/html;charset=UTF-8</prop>
-			</props>
-		</property>
-	</bean>
-	<bean id="velocityViewResolver"
-		class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
-		<property name="suffix" value=".vm"/>
-		<property name="contentType" value="text/html;charset=UTF-8"/>
-		<property name="exposeSpringMacroHelpers" value="true" />
-		<property name="exposeRequestAttributes" value="true" />
-		<property name="exposeSessionAttributes" value="true" />
-		<property name="requestContextAttribute" value="request" />
-		<property name="cache" value="true" />
-		<property name="order" value="5"/>
-	</bean>
-	
-	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 
-		<!-- 当jsp页面使用了jstl的国际化标签(如：<fmt:message/>)才需要使用jstlView替换默认的视图实现类-->
-		<!-- <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" /> -->
-		<property name="prefix" value="/WEB-INF/jsp/" />
-		<property name="suffix" value=".jsp" />
-		<property name="contentType" value="text/html;charset=UTF-8"/>
-	</bean> 
-	
-	<!-- 配置文件上传 -->
+    <mvc:annotation-driven>
+        <!-- 添加自定义converter(默认7个仍在) -->
+        <mvc:message-converters>
+            <bean class="com.panda.web.ToStringHttpMessageConverter"></bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="com.panda.interceptor.MyInterceptor"/>
+        </mvc:interceptor>
+        <!-- <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="com.panda.interceptor.MyInterceptor2"/>
+        </mvc:interceptor> -->
+    </mvc:interceptors>
+
+    <bean id="freeMarkerConfigurer" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+        <property name="templateLoaderPaths" value="WEB-INF/freemarker"/>
+        <property name="defaultEncoding" value="UTF-8"/>
+        <property name="freemarkerSettings">
+            <props>
+                <!-- 将值为null的属性对象转化为空字符串，而不是抛出异常 -->
+                <prop key="classic_compatible">true</prop>
+            </props>
+        </property>
+    </bean>
+    <bean id="FreeMarkerViewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+        <property name="suffix" value=".ftl"/>
+        <property name="order" value="1"/>
+        <property name="contentType" value="text/html;charset=UTF-8"/>
+        <property name="exposeSpringMacroHelpers" value="true"/>
+        <property name="exposeRequestAttributes" value="true"/>
+        <property name="exposeSessionAttributes" value="true"/>
+        <property name="requestContextAttribute" value="request"/>
+        <property name="cache" value="true"/>
+    </bean>
+
+    <!-- 视图解析器，所有modelview返回自动添加前后缀 -->
+    <bean id="velocityConfigurer"
+          class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+        <property name="resourceLoaderPath" value="WEB-INF/velocity"/>
+        <property name="velocityProperties">
+            <props>
+                <prop key="input.encoding">UTF-8</prop>
+                <prop key="output.encoding">UTF-8</prop>
+                <prop key="contentType">text/html;charset=UTF-8</prop>
+            </props>
+        </property>
+    </bean>
+    <bean id="velocityViewResolver"
+          class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
+        <property name="suffix" value=".vm"/>
+        <property name="contentType" value="text/html;charset=UTF-8"/>
+        <property name="exposeSpringMacroHelpers" value="true"/>
+        <property name="exposeRequestAttributes" value="true"/>
+        <property name="exposeSessionAttributes" value="true"/>
+        <property name="requestContextAttribute" value="request"/>
+        <property name="cache" value="true"/>
+        <property name="order" value="5"/>
+    </bean>
+
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!-- 当jsp页面使用了jstl的国际化标签(如：<fmt:message/>)才需要使用jstlView替换默认的视图实现类-->
+        <!-- <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" /> -->
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="suffix" value=".jsp"/>
+        <property name="contentType" value="text/html;charset=UTF-8"/>
+    </bean>
+
+    <!-- 配置文件上传 -->
     <bean id="multipartResolver"
-		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<property name="maxUploadSize" value="5000000" />
-		<property name="defaultEncoding" value="utf-8" />
-	</bean> 
-	
-	<!-- websocket  -->
-	<!-- allowed-origins="*" 解决ngnix代理后ws建立出现403错误  -->
-	<!-- Registers a Spring MVC SimpleUrlHandlerMapping to map HTTP WebSocket handshake (or SockJS) requests to WebSocketHandlers -->
-	<websocket:handlers allowed-origins="*">
-		<websocket:mapping handler="actionHandler" path="/action"/>
-	</websocket:handlers>
-	<bean id="actionHandler" class="com.panda.controller.MyWebSocketHandler"/>
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="5000000"/>
+        <property name="defaultEncoding" value="utf-8"/>
+    </bean>
+
+    <!-- websocket  -->
+    <!-- allowed-origins="*" 解决ngnix代理后ws建立出现403错误  -->
+    <!-- Registers a Spring MVC SimpleUrlHandlerMapping to map HTTP WebSocket handshake (or SockJS) requests to WebSocketHandlers -->
+    <websocket:handlers allowed-origins="*">
+        <websocket:mapping handler="actionHandler" path="/action"/>
+    </websocket:handlers>
+    <bean id="actionHandler" class="com.panda.controller.MyWebSocketHandler"/>
 </beans>

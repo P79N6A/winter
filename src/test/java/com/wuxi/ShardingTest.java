@@ -18,11 +18,12 @@ public class ShardingTest {
     private static int DB_MOD = 4;//表示开始时将4个库并成1个库
 
     public static void main(String[] args) {
-        for (int i=0; i<100;i++){
-            System.out.println(i+" : "+getString(i+"", "xx_"));
+        for (int i = 0; i < 100; i++) {
+            System.out.println(i + " : " + getString(i + "", "xx_"));
         }
 
     }
+
     /*
         取模方案扩容的解决：一、可以提前按照预估方案创建库和表，前期放到一个DB，后期迁移，或者一次性弄好
         二、可以按照预估的方案去确定分库和分表的后缀ID，但是前期只创建一部分库和表。
@@ -40,8 +41,8 @@ public class ShardingTest {
         return preTable + "_" + db + table;
     }
 
-    private static void sharding(long id){
-        long a1 = (id / MAX_DB );
+    private static void sharding(long id) {
+        long a1 = (id / MAX_DB);
         long a2 = (id / MAX_DB % MAX_TABLE);
         long a3 = (id / MAX_DB % MAX_TABLE / TABLE_MOD);
         long a4 = (id / MAX_DB % MAX_TABLE / TABLE_MOD * TABLE_MOD);
@@ -49,7 +50,7 @@ public class ShardingTest {
     }
 
     @Test
-    public void shardingTest(){
+    public void shardingTest() {
         sharding(255);
         sharding(256);
         sharding(511);
@@ -57,19 +58,16 @@ public class ShardingTest {
     }
 
 
-
-
-
     @Test
-    public void shardingDbTableTest(){
-        for(long i=0; i<100;i++){
+    public void shardingDbTableTest() {
+        for (long i = 0; i < 100; i++) {
             shardingDbTable(i);
         }
     }
 
-    private static void shardingDbTable(long id){
-        long dbId = id / MAX_TABLE % MAX_DB ;
-        long tableId = id / MAX_DB % MAX_TABLE ;
+    private static void shardingDbTable(long id) {
+        long dbId = id / MAX_TABLE % MAX_DB;
+        long tableId = id / MAX_DB % MAX_TABLE;
 
         String db = StringUtils.leftPad(String.valueOf(dbId), 2, '0');
         String table = StringUtils.leftPad(String.valueOf(tableId), 2, '0');

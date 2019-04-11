@@ -11,20 +11,20 @@ import org.slf4j.LoggerFactory;
 
 public class WebSocketServer {
 
-	private static final Logger logger = LoggerFactory.getLogger(WebSocketServer.class);
-	
-	private final int port;
-	public static ChannelHandlerContext ctx = null;
+    private static final Logger logger = LoggerFactory.getLogger(WebSocketServer.class);
 
-	public WebSocketServer(int port){
-		this.port = port;
-	}
-	
-	public void start(){
-		ServerBootstrap bootstrap = new ServerBootstrap(new NioServerSocketChannelFactory(Executors.newCachedThreadPool(),Executors.newCachedThreadPool()));
-		bootstrap.setPipelineFactory(new WebSocketServerPipelineFactory());
-		bootstrap.bind(new InetSocketAddress(port));
-		logger.info("websocket server started at port {}",port);
-	}
-	
+    private final int port;
+    public static ChannelHandlerContext ctx = null;
+
+    public WebSocketServer(int port) {
+        this.port = port;
+    }
+
+    public void start() {
+        ServerBootstrap bootstrap = new ServerBootstrap(new NioServerSocketChannelFactory(Executors.newCachedThreadPool(), Executors.newCachedThreadPool()));
+        bootstrap.setPipelineFactory(new WebSocketServerPipelineFactory());
+        bootstrap.bind(new InetSocketAddress(port));
+        logger.info("websocket server started at port {}", port);
+    }
+
 }

@@ -13,20 +13,20 @@ import com.panda.dao.UserMapper;
 
 @Service("carService")
 public class CarService {
-	private static final Logger logger = LoggerFactory.getLogger(CarService.class);
-	
-	@Autowired
-	CarMapper carMapper;
-	
-	public void add(Car car){
-		carMapper.add(car);
-	}
-	
-	@Transactional
-	public void update(Car car){
-		System.out.println(carMapper.update(car));
-		String price = carMapper.selectPrice(car.getName());
-		logger.info("price:{}",price);
-		
-	}
+    private static final Logger logger = LoggerFactory.getLogger(CarService.class);
+
+    @Autowired
+    CarMapper carMapper;
+
+    public void add(Car car) {
+        carMapper.add(car);
+    }
+
+    @Transactional
+    public void update(Car car) {
+        System.out.println(carMapper.update(car));
+        String price = carMapper.selectPrice(car.getName());
+        logger.info("price:{}", price);
+
+    }
 }

@@ -20,42 +20,42 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/check")
 public class CheckController {
 
-	private static final Logger logger = LoggerFactory.getLogger(CheckController.class);
-	
-	@RequestMapping(value="/health",method=RequestMethod.POST)
-	public ModelAndView health(@RequestParam String text){
-		ModelAndView view = new ModelAndView("success");
-		logger.info(text);
-		view.addObject("text", text);
-		return view;
-	}
-	
-	@RequestMapping("/hello")
-	public void hello(HttpServletRequest req,HttpServletResponse resp) throws IOException{
-		logger.info("1");
-		PrintWriter write = resp.getWriter();
-		logger.info("2");
-		 Date today = new Date();
-		 write.println("<html>"
-				 +"<meta http-equiv=\"charset\" content=\"utf-8\">"
-				 +"<body><p>" + today +"</p>" 
-				 +"<p>hello</p>"
-				 + "</body></html>");
-		 logger.info("3");
-		 write.flush();
-		 logger.info("4");
-		 write.close();
-		 logger.info("5");
-	}
-	
-	@RequestMapping("/res/{code}")
-	public void res(HttpServletRequest request,HttpServletResponse response,
-			@PathVariable("code")Integer code) throws IOException{
-		response.sendError(code);
+    private static final Logger logger = LoggerFactory.getLogger(CheckController.class);
+
+    @RequestMapping(value = "/health", method = RequestMethod.POST)
+    public ModelAndView health(@RequestParam String text) {
+        ModelAndView view = new ModelAndView("success");
+        logger.info(text);
+        view.addObject("text", text);
+        return view;
+    }
+
+    @RequestMapping("/hello")
+    public void hello(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        logger.info("1");
+        PrintWriter write = resp.getWriter();
+        logger.info("2");
+        Date today = new Date();
+        write.println("<html>"
+                + "<meta http-equiv=\"charset\" content=\"utf-8\">"
+                + "<body><p>" + today + "</p>"
+                + "<p>hello</p>"
+                + "</body></html>");
+        logger.info("3");
+        write.flush();
+        logger.info("4");
+        write.close();
+        logger.info("5");
+    }
+
+    @RequestMapping("/res/{code}")
+    public void res(HttpServletRequest request, HttpServletResponse response,
+                    @PathVariable("code") Integer code) throws IOException {
+        response.sendError(code);
 //		if(HttpServletResponse.SC_NOT_FOUND == code){
 //			response.sendError(HttpServletResponse.SC_NOT_FOUND);
 //		}else {
 //			response.sendRedirect("/index.html");
 //		}
-	}
+    }
 }

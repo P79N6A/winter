@@ -7,5 +7,5 @@ import org.jboss.netty.channel.Channel;
 
 public class WebSocketGlobal {
 
-	public static Set<Channel> ctxs= new HashSet<>();
+    public static Set<Channel> ctxs = new HashSet<>();
 }

@@ -9,30 +9,30 @@ import org.junit.Test;
 
 public class XssFilterTest {
 
-	
-	private String[] filterChars;
+
+    private String[] filterChars;
     private String[] replaceChars;
     private static final String REGEX = "(<script.*?>).*?(</script>)";
-    
+
     @Before
-    public void init(){
-    	String filterChar = ">@<@\'@\"@\\@#@(@)";
-    	String replaceChar = "＞'@<@‘@“@＼@＃@（@）";
-    	String splitChar = "@";
-    	
-    	if (filterChar != null && filterChar.length() > 0) {
+    public void init() {
+        String filterChar = ">@<@\'@\"@\\@#@(@)";
+        String replaceChar = "＞'@<@‘@“@＼@＃@（@）";
+        String splitChar = "@";
+
+        if (filterChar != null && filterChar.length() > 0) {
             filterChars = filterChar.split(splitChar);
         }
         if (replaceChar != null && replaceChar.length() > 0) {
             replaceChars = replaceChar.split(splitChar);
         }
     }
-    
+
     @Test
-    public void xssEncode(){
-    	String s = "<script>alert('XSS')</script>";
-    	if (s == null || s.equals("")) {
-            return ;
+    public void xssEncode() {
+        String s = "<script>alert('XSS')</script>";
+        if (s == null || s.equals("")) {
+            return;
         }
         try {
             s = URLDecoder.decode(s, "UTF-8");
@@ -49,9 +49,10 @@ public class XssFilterTest {
         }
         System.out.println(s);
     }
-    
+
     /**
      * 替换 script
+     *
      * @param content
      * @return
      */
